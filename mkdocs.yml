@@ -1,0 +1,15 @@
+site_name: Cattlechain 4.0
+site_url: https://cattlechain.readthedocs.org
+repo_url: https://github.com/cattlechain/docs
+site_description: Cattlechain Documentation
+docs_dir: doc
+site_dir: html
+edit_uri: edit/master/doc/
+markdown_extensions: [toc,fenced_code]
+use_directory_urls: false
+theme: readthedocs
+extra_css: ["https://www.fiware.org/style/fiware_readthedocs.css", "https://www.fiware.org/style/fiware_readthedocs_core.css"]
+google_analytics: ['', '']
+pages:
+    - Home: index.md
+    - 'Architecture': architecture.md
