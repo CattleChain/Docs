@@ -70,9 +70,57 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#keyrock">KeyRock</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pep-proxy-wilma">PEP Proxy- Wilma</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#orion-ld-core">Orion-LD (Core)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quantumleap">Quantumleap</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cosmos">Cosmos</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#cosmos-orion-spark-connector">Cosmos ORION-SPARK Connector:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#canismajor-blockchain-adaptor">CanisMajor - Blockchain Adaptor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#taurus-ledgersync">Taurus - LedgerSync</a>
+    </li>
         </ul>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="datamodel.html">Data Models</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="usages.html">Usage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="blockchain_operations.html">Blockchain Operations</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="ml_operations.html">ML/AI Operations</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="environment.html">Environment</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="future_work.html">Future Work</a>
                     </li>
                 </ul>
       </div>
@@ -114,14 +162,19 @@
 <p>CattleChain core platform is consist of various FIWARE Generic Enablers. Figure present the architecture of the CattleChain platform.</p>
 <p><img alt="Architecture" src="https://raw.githubusercontent.com/CattleChain/Docs/master/images/architecture.png" /></p>
 <h2 id="generic-enablers">Generic Enablers</h2>
+<p>A Context Broker Generic Enabler is the core and mandatory component of any  “Powered by FIWARE” platform or solution. It enables to manage context information in a highly decentralized and large-scale manner.</p>
+<p>In the CattleChain Project there are the generic enablers has been used:</p>
 <h3 id="keyrock">KeyRock</h3>
 <p>Keyrock is the FIWARE component responsible for Identity Management. Using Keyrock (in conjunction with other security components such as PEP Proxy and Authzforce) enables you to add OAuth2-based authentication and authorization security to your services and applications.
-The main identity management concepts within Keyrock are:
-* Users:</p>
-<pre><code>* Have a registered account in Keyrock.
-* Can manage organizations and register applications.
-</code></pre>
+The main identity management concepts within Keyrock are:</p>
 <ul>
+<li>
+<p>Users:</p>
+<ul>
+<li>Have a registered account in Keyrock.</li>
+<li>Can manage organizations and register applications.   </li>
+</ul>
+</li>
 <li>
 <p>Organizations:</p>
 <ul>
@@ -142,12 +195,41 @@ The main identity management concepts within Keyrock are:
 </ul>
 <p>Keyrock provides both a GUI and an API interface.</p>
 <p>to know more about keyrock please follow keyrock <a href="https://fiware-idm.readthedocs.io/en/latest/">documentation</a>.</p>
+<h3 id="pep-proxy-wilma">PEP Proxy- Wilma</h3>
+<p>Wilma is a PEP Proxy - it can be combined with other security components such as Keyrock and Authzforce to enforce access control to your backend applications. This means that only permitted users will be able to access your Generic Enablers or REST services. Identity Management allows you to manage specific permissions and policies to resources allowing different access levels for your users.</p>
+<p>to know more about wilma please follow Wilma <a href="https://fiware-pep-proxy.readthedocs.io/en/latest/">documentation</a>.</p>
+<p><strong>important: to enable the Canis Major integration please use the fork version of PEP Proxy source code can be found in FIWARE-BLOCKCHAIN <a href="https://github.com/FIWARE-Blockchain/fiware-pep-proxy">github</a></strong></p>
+<h3 id="orion-ld-core">Orion-LD (Core)</h3>
+<p>Orion-LD is an alternative NGSI-LD Context Broker written in C/C++. It is a standalone executable and therefore small, fast, lightweight and easy to handle. Context brokers allow for the management and requesting context of information in a structured manner based on linked data standards following the NGSI-LD specification. Orion-LD is more suitable for smaller installations or possibly in embedded environments - it currentlys supports only a subset of the standard NGSI-LD endpoints.</p>
+<p>(Documentation)[https://github.com/FIWARE/context.Orion-LD/tree/develop/doc/manuals-ld]</p>
+<h3 id="quantumleap">Quantumleap</h3>
+<p>QuantumLeap is a REST service for storing, querying and retrieving NGSI v2 and NGSI-LD (experimental support) spatial-temporal data. QuantumLeap converts NGSI semi-structured data into tabular format and stores it in a time-series database, associating each database record with a time index and, if present in the NGSI data, a location on Earth. REST clients can then retrieve NGSI entities by filtering entity sets through time ranges and spatial operators. Note that, from the client's stand point, these queries are defined on NGSI entities as opposed to database tables. However, the query functionality available through the REST interface is quite basic and most complex queries typically require clients to use the database directly.</p>
+<p>(Documentation)[https://quantumleap.readthedocs.io/en/latest/]</p>
+<h3 id="cosmos">Cosmos</h3>
+<p>The Cosmos BigData Analysis GE is a set of tools that help achieving the tasks of Streaming and Batch processing over context data.</p>
+<p>(Documentation)[https://fiware-cosmos-spark.readthedocs.io/en/latest/#what-is-cosmos]</p>
+<h4 id="cosmos-orion-spark-connector">Cosmos ORION-SPARK Connector:</h4>
+<p>The Cosmos Generic Enabler enables easier BigData analysis over context, integrated with some of the most popular BigData platforms.
+(Documentation)[https://fiware-cosmos-spark.readthedocs.io/en/latest/]</p>
+<h3 id="canismajor-blockchain-adaptor">CanisMajor - Blockchain Adaptor</h3>
+<p><strong>Under Development</strong></p>
+<p>CanisMajor is a blockchain adaptor that supports various DLTs, the adaptor aims to submit the data to DLT and works with NGSI-LD and NGSI-V2 as well.
+CanisMajor Adaptor recommend using AEI contract Model for the Ethereum Clients. AEI (Asset,Event, Identity) Smart Contract is written in Solidity using ERC721 standard (NFT).</p>
+<p>to know more about CanisMajor please follow CanisMajor <a href="https://fiware-blockchain.github.io/CanisMajor/">documentation</a>.</p>
+<p>Canis Major recommend to use the <a href="https://github.com/FIWARE-Blockchain/AEIContract">AEI Contract Model</a>.</p>
+<p>AEI Smart Contract is written in Solidity using ERC721 standard (NFT) and can be use with Ethereum Clients. It is compatible with FIWARE-Canis Major Adaptor to store the data in blockchain. AEI, asset, events (metadata), relationship, is designed to store the NGSI-LD model with the help of Canis Major Adaptor.</p>
+<h3 id="taurus-ledgersync">Taurus - LedgerSync</h3>
+<p><strong>Under Development</strong></p>
+<p>Taurus is a blockchain listener that supports various DLT, and the listener aims to listen to Blockchain Events and store data in FIWARE. This component compliments FIWARE as an OffChainDB.</p>
+<p>(Link)[https://github.com/FIWARE-Blockchain/Taurus]</p>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="datamodel.html" class="btn btn-neutral float-right" title="Data Models">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -180,6 +262,8 @@ The main identity management concepts within Keyrock are:
       
         <span><a href="index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="datamodel.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
