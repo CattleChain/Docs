@@ -66,6 +66,12 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="architecture.html">Architecture</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#generic-enablers">Generic Enablers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#keyrock">KeyRock</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -106,7 +112,36 @@
               
                 <h1 id="cattlechain-architecture">Cattlechain Architecture</h1>
 <p>CattleChain core platform is consist of various FIWARE Generic Enablers. Figure present the architecture of the CattleChain platform.</p>
-<p><img alt="Architecture" src="https://raw.githubusercontent.com/CattleChain/Docs/master/doc/images/architecture.png" /></p>
+<p><img alt="Architecture" src="https://raw.githubusercontent.com/CattleChain/Docs/master/images/architecture.png" /></p>
+<h2 id="generic-enablers">Generic Enablers</h2>
+<h3 id="keyrock">KeyRock</h3>
+<p>Keyrock is the FIWARE component responsible for Identity Management. Using Keyrock (in conjunction with other security components such as PEP Proxy and Authzforce) enables you to add OAuth2-based authentication and authorization security to your services and applications.
+The main identity management concepts within Keyrock are:
+* Users:</p>
+<pre><code>* Have a registered account in Keyrock.
+* Can manage organizations and register applications.
+</code></pre>
+<ul>
+<li>
+<p>Organizations:</p>
+<ul>
+<li>Are group of users that share resources of an application (roles and permissions).</li>
+<li>Users can be members or owners (manage the organization).</li>
+</ul>
+</li>
+<li>
+<p>Applications:</p>
+<ul>
+<li>has the client role in the OAuth 2.0 architecture and will request protected user data.</li>
+<li>Are able to authenticate users using their Oauth credentials (ID and secret) which unequivocally identify the application</li>
+<li>Define roles and permissions to manage authorization of users and organizations</li>
+<li>Can register Pep Proxy to protect backends.</li>
+<li>Can register IoT Agents.</li>
+</ul>
+</li>
+</ul>
+<p>Keyrock provides both a GUI and an API interface.</p>
+<p>to know more about keyrock please follow keyrock <a href="https://fiware-idm.readthedocs.io/en/latest/">documentation</a>.</p>
               
             </div>
           </div>
