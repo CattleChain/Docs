@@ -13,3 +13,11 @@ google_analytics: ['', '']
 pages:
     - Home: index.md
     - 'Architecture': architecture.md
+    - 'Data Models': datamodel.md
+    - 'Usage': usages.md
+    - 'Blockchain Operations': blockchain_operations.md
+    - 'ML/AI Operations': ml_operations.md
+    - 'Environment': environment.md
+    - 'Evaluation': evaluation.md
+    - 'Changelog': changelog.md
+    - 'Future Work': future_work.md
