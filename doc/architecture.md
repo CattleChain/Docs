@@ -52,7 +52,7 @@ to know more about wilma please follow Wilma [documentation](https://fiware-pep-
 
 Orion-LD is an alternative NGSI-LD Context Broker written in C/C++. It is a standalone executable and therefore small, fast, lightweight and easy to handle. Context brokers allow for the management and requesting context of information in a structured manner based on linked data standards following the NGSI-LD specification. Orion-LD is more suitable for smaller installations or possibly in embedded environments - it currentlys supports only a subset of the standard NGSI-LD endpoints.
 
-(Documentation)[https://github.com/FIWARE/context.Orion-LD/tree/develop/doc/manuals-ld]
+[Documentation](https://github.com/FIWARE/context.Orion-LD/tree/develop/doc/manuals-ld)
 
 
 ### Quantumleap
@@ -60,18 +60,18 @@ Orion-LD is an alternative NGSI-LD Context Broker written in C/C++. It is a stan
 QuantumLeap is a REST service for storing, querying and retrieving NGSI v2 and NGSI-LD (experimental support) spatial-temporal data. QuantumLeap converts NGSI semi-structured data into tabular format and stores it in a time-series database, associating each database record with a time index and, if present in the NGSI data, a location on Earth. REST clients can then retrieve NGSI entities by filtering entity sets through time ranges and spatial operators. Note that, from the client's stand point, these queries are defined on NGSI entities as opposed to database tables. However, the query functionality available through the REST interface is quite basic and most complex queries typically require clients to use the database directly.
 
 
-(Documentation)[https://quantumleap.readthedocs.io/en/latest/]
+[Documentation](https://quantumleap.readthedocs.io/en/latest/)
 
 ### Cosmos
 
 The Cosmos BigData Analysis GE is a set of tools that help achieving the tasks of Streaming and Batch processing over context data.
 
-(Documentation)[https://fiware-cosmos-spark.readthedocs.io/en/latest/#what-is-cosmos]
+[Documentation](https://fiware-cosmos-spark.readthedocs.io/en/latest/#what-is-cosmos)
 
 #### Cosmos ORION-SPARK Connector:
 
 The Cosmos Generic Enabler enables easier BigData analysis over context, integrated with some of the most popular BigData platforms.
-(Documentation)[https://fiware-cosmos-spark.readthedocs.io/en/latest/]
+[Documentation](https://fiware-cosmos-spark.readthedocs.io/en/latest/)
 
 
 ### CanisMajor - Blockchain Adaptor
@@ -96,4 +96,4 @@ AEI Smart Contract is written in Solidity using ERC721 standard (NFT) and can be
 
 Taurus is a blockchain listener that supports various DLT, and the listener aims to listen to Blockchain Events and store data in FIWARE. This component compliments FIWARE as an OffChainDB.
 
-(Link)[https://github.com/FIWARE-Blockchain/Taurus]
+[Link](https://github.com/FIWARE-Blockchain/Taurus).
