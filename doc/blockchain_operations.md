@@ -49,7 +49,7 @@ AEI contract is cosist of 3 aspects (see the figure below):
 ![AEI Contract Design](https://raw.githubusercontent.com/FIWARE-Blockchain/AEIContract/master/docs/images/1.png)
 
 #### Example
-![Example](https://github.com/FIWARE-Blockchain/AEIContract/blob/master/docs/images/2.png)
+![Example](https://raw.githubusercontent.com/FIWARE-Blockchain/AEIContract/master/docs/images/2.png)
 
 To Store the NGSI-LD model there are few possibilities with the help of some supported storage type:
 
@@ -57,7 +57,7 @@ To Store the NGSI-LD model there are few possibilities with the help of some sup
 2. IOTA MaM
 3. MerkleRoot
 
-![Example](https://github.com/FIWARE-Blockchain/AEIContract/blob/master/docs/images/3.png)
+![Example](https://raw.githubusercontent.com/FIWARE-Blockchain/AEIContract/master/docs/images/3.png)
 
 ### Methods
 
