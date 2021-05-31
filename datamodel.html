@@ -70,6 +70,26 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="datamodel.html">Data Models</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#smart-agrifood">Smart Agrifood</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dlt-transaction-recipt">DLT Transaction Recipt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-properties">List of properties</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-model-description-of-properties">Data Model description of properties</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-payloads">Example payloads</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dlttxreceipt-ngsi-v2-key-values-example">DLTtxReceipt NGSI-v2 key-values Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dlttxreceipt-ngsi-v2-normalized-example">DLTtxReceipt NGSI-v2 normalized Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dlttxreceipt-ngsi-ld-key-values-example">DLTtxReceipt NGSI-LD key-values Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dlttxreceipt-ngsi-ld-normalized-example">DLTtxReceipt NGSI-LD normalized Example</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -137,6 +157,628 @@
             <div class="section">
               
                 <h1 id="data-model">Data Model</h1>
+<h2 id="smart-agrifood">Smart Agrifood</h2>
+<p><a href="https://github.com/smart-data-models/dataModel.Agrifood/tree/b9868de5c2ac26e1ae6fbabffd3a82c6cdf7034d">Agrifood data Model</a></p>
+<h2 id="dlt-transaction-recipt">DLT Transaction Recipt</h2>
+<p><a href="https://github.com/smart-data-models/dataModel.DistributedLedgerTech">DLT Transation Recipt Data Model</a></p>
+<h2 id="list-of-properties">List of properties</h2>
+<ul>
+<li><code>TxReceipts</code>: Transaction Receipt  </li>
+<li><code>address</code>: The mailing address  </li>
+<li><code>alternateName</code>: An alternative name for this item  </li>
+<li><code>areaServed</code>: The geographic area where a service or offered item is provided  </li>
+<li><code>dataProvider</code>: A sequence of characters identifying the provider of the harmonised data entity.  </li>
+<li><code>dateCreated</code>: Entity creation timestamp. This will usually be allocated by the storage platform.  </li>
+<li><code>dateModified</code>: Timestamp of the last modification of the entity. This will usually be allocated by the storage platform.  </li>
+<li><code>description</code>: A description of this item  </li>
+<li><code>id</code>: Unique identifier of the entity  </li>
+<li><code>location</code>:   </li>
+<li><code>name</code>: The name of this item.  </li>
+<li><code>owner</code>: A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)  </li>
+<li><code>refEntity</code>: Entity persisted in the DLT  </li>
+<li><code>seeAlso</code>: list of uri pointing to additional resources about the item  </li>
+<li><code>source</code>: A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object.  </li>
+<li><code>type</code>: NSGI Entity Type. it has to be DLTtxReceipt  </li>
+</ul>
+<p>Required properties  </p>
+<h2 id="data-model-description-of-properties">Data Model description of properties</h2>
+<p>Sorted alphabetically (click for details)  </p>
+<details><summary><strong>full yaml details</strong></summary>    
+
+
+<pre><code class="language-yaml">DLTtxReceipt:    
+  description: 'Description of a DLT receipt storing some of the attributes (keys) of a transaction.'    
+  properties:    
+    TxReceipts:    
+      description: 'Transaction Receipt'    
+      properties:    
+        blockHash:    
+          description: 'Property. Model:''https://schema.org/Text''. Hash of the block of the transaction'    
+          type: string    
+        blockNumber:    
+          description: 'Property. Model:''https://schema.org/Number''. Block number of the transaction'    
+          minimum: 0    
+          type: integer    
+        contractAddress:    
+          description: 'Property. Model:''https://schema.org/Text''. Contract address created, if the transaction was a contract creation, otherwise null'    
+          type: string    
+        cumulativeGasUsed:    
+          description: 'Property. Model:''https://schema.org/Number''. Total amount of gas used when this transaction was executed in the block'    
+          minimum: 0    
+          type: integer    
+        dltType:    
+          description: 'Property. Model:''https://schema.org/Text''. Enum:''eth, iota''. type of DLT used by the transaction'    
+          enum:    
+            - eth    
+            - iota    
+          type: string    
+        from:    
+          description: 'Property. Model:''https://schema.org/Text''. Account Address of the user/service responsible to submit the transaction (address of the msg.sender)'    
+          type: string    
+        gasUsed:    
+          description: 'Property. Model:''https://schema.org/Number''. The amount of gas used by this specific transaction'    
+          minimum: 0    
+          type: integer    
+        keys:    
+          description: 'Property. Payload keys used in transaction payload'    
+          items:    
+            type: string    
+          type: array    
+        logs:    
+          description: 'Property. A log record can be used to describe an event within a smart contract (Ethereum)'    
+          properties:    
+            blockHash:    
+              description: 'Property. Model:''https://schema.org/Text''. Hash of the block where this log was in'    
+              type: string    
+            blockNumber:    
+              description: 'Property. Model:''https://schema.org/Number''. The block number where this log was in. null when its pending. null when its pending log'    
+              minimum: 0    
+              type: integer    
+            data:    
+              description: 'Property. Model:''https://schema.org/Text''. Contains one or more 32 Bytes non-indexed arguments of the log'    
+              type: string    
+            id:    
+              description: 'Property. Model:''https://schema.org/Text''. Log id'    
+              type: string    
+            logAddress:    
+              description: 'Property. Model:''https://schema.org/Text''. Address from which this log originated'    
+              type: string    
+            logIndex:    
+              description: 'Property. Model:''https://schema.org/Number''.  Integer of the log index position in the block. null when its pending log'    
+              minimum: 0    
+              type: integer    
+            removed:    
+              description: 'Property. Model:''https://schema.org/Boolean''. True when the log was removed, due to a chain reorganization. False if its a valid log'    
+              type: boolean    
+            topics:    
+              description: 'Property. Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)'    
+              items: {}    
+              type: array    
+            transactionHash:    
+              description: 'Property. Model:''https://schema.org/Text''. Hash of the transactions this log was created from. null when its pending log'    
+              type: string    
+            transactionIndex:    
+              description: 'Property. Model:''https://schema.org/Number''.  Integer of the transactions index position log was created from. null when its pending log.'    
+              minimum: 0    
+              type: integer    
+          type: object    
+        logsBloom:    
+          description: 'Property. Model:''https://schema.org/Text''. 256 Bytes-bloom filter for light clients to quickly retrieve related logs'    
+          type: string    
+        objectType:    
+          description: 'Property. Model:''https://schema.org/Text''. Type of object has been persisted'    
+          type: string    
+        status:    
+          description: 'Property. Model:''https://schema.org/Boolean''. True or False — which informs us if the txn was reverted or not — in this case it was true (0x1)'    
+          type: boolean    
+        storageType:    
+          description: 'Property. Model:''https://schema.org/Text''. Enum:''iota, ipfs, merkletree''. Type of storage used to persist payload'    
+          enum:    
+            - iota    
+            - ipfs    
+            - merkletree    
+          type: string    
+        to:    
+          description: 'Property. Model:''https://schema.org/Text''. Account or Contract Address to transaction has been submitted'    
+          type: string    
+        transactionHash:    
+          description: 'Property. Model:''https://schema.org/Text''. Hash of the transaction'    
+          type: string    
+        transactionIndex:    
+          description: 'Property. Model:''https://schema.org/Number''. Integer of the transactions index position in the block'    
+          minimum: 0    
+          type: integer    
+      type: Property    
+    address:    
+      description: 'The mailing address'    
+      properties:    
+        addressCountry:    
+          description: 'Property. The country. For example, Spain. Model:''https://schema.org/addressCountry'''    
+          type: string    
+        addressLocality:    
+          description: 'Property. The locality in which the street address is, and which is in the region. Model:''https://schema.org/addressLocality'''    
+          type: string    
+        addressRegion:    
+          description: 'Property. The region in which the locality is, and which is in the country. Model:''https://schema.org/addressRegion'''    
+          type: string    
+        postOfficeBoxNumber:    
+          description: 'Property. The post office box number for PO box addresses. For example, 03578. Model:''https://schema.org/postOfficeBoxNumber'''    
+          type: string    
+        postalCode:    
+          description: 'Property. The postal code. For example, 24004. Model:''https://schema.org/https://schema.org/postalCode'''    
+          type: string    
+        streetAddress:    
+          description: 'Property. The street address. Model:''https://schema.org/streetAddress'''    
+          type: string    
+      type: Property    
+      x-ngsi:    
+        model: https://schema.org/address    
+    alternateName:    
+      description: 'An alternative name for this item'    
+      type: Property    
+    areaServed:    
+      description: 'The geographic area where a service or offered item is provided'    
+      type: Property    
+      x-ngsi:    
+        model: https://schema.org/Text    
+    dataProvider:    
+      description: 'A sequence of characters identifying the provider of the harmonised data entity.'    
+      type: Property    
+    dateCreated:    
+      description: 'Entity creation timestamp. This will usually be allocated by the storage platform.'    
+      format: date-time    
+      type: Property    
+    dateModified:    
+      description: 'Timestamp of the last modification of the entity. This will usually be allocated by the storage platform.'    
+      format: date-time    
+      type: Property    
+    description:    
+      description: 'A description of this item'    
+      type: Property    
+    id:    
+      anyOf: &amp;dlttxreceipt_-_properties_-_owner_-_items_-_anyof    
+        - description: 'Property. Identifier format of any NGSI entity'    
+          maxLength: 256    
+          minLength: 1    
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$    
+          type: string    
+        - description: 'Property. Identifier format of any NGSI entity'    
+          format: uri    
+          type: string    
+      description: 'Unique identifier of the entity'    
+      type: Property    
+    location:    
+      $id: https://geojson.org/schema/Geometry.json    
+      $schema: &quot;http://json-schema.org/draft-07/schema#&quot;    
+      oneOf:    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                type: number    
+              minItems: 2    
+              type: array    
+            type:    
+              enum:    
+                - Point    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON Point'    
+          type: object    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                items:    
+                  type: number    
+                minItems: 2    
+                type: array    
+              minItems: 2    
+              type: array    
+            type:    
+              enum:    
+                - LineString    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON LineString'    
+          type: object    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                items:    
+                  items:    
+                    type: number    
+                  minItems: 2    
+                  type: array    
+                minItems: 4    
+                type: array    
+              type: array    
+            type:    
+              enum:    
+                - Polygon    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON Polygon'    
+          type: object    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                items:    
+                  type: number    
+                minItems: 2    
+                type: array    
+              type: array    
+            type:    
+              enum:    
+                - MultiPoint    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON MultiPoint'    
+          type: object    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                items:    
+                  items:    
+                    type: number    
+                  minItems: 2    
+                  type: array    
+                minItems: 2    
+                type: array    
+              type: array    
+            type:    
+              enum:    
+                - MultiLineString    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON MultiLineString'    
+          type: object    
+        - properties:    
+            bbox:    
+              items:    
+                type: number    
+              minItems: 4    
+              type: array    
+            coordinates:    
+              items:    
+                items:    
+                  items:    
+                    items:    
+                      type: number    
+                    minItems: 2    
+                    type: array    
+                  minItems: 4    
+                  type: array    
+                type: array    
+              type: array    
+            type:    
+              enum:    
+                - MultiPolygon    
+              type: string    
+          required:    
+            - type    
+            - coordinates    
+          title: 'GeoJSON MultiPolygon'    
+          type: object    
+      title: 'GeoJSON Geometry'    
+    name:    
+      description: 'The name of this item.'    
+      type: Property    
+    owner:    
+      description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'    
+      items:    
+        anyOf: *dlttxreceipt_-_properties_-_owner_-_items_-_anyof    
+        description: 'Property. Unique identifier of the entity'    
+      type: Property    
+    refEntity:    
+      anyOf:    
+        - description: 'Property. Identifier format of any NGSI entity'    
+          maxLength: 256    
+          minLength: 1    
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$    
+          type: string    
+        - description: 'Property. Identifier format of any NGSI entity'    
+          format: uri    
+          type: string    
+      description: 'Entity persisted in the DLT'    
+      type: Relationship    
+      x-ngsi:    
+        model: http://schema.org/URL    
+    seeAlso:    
+      description: 'list of uri pointing to additional resources about the item'    
+      oneOf:    
+        - items:    
+            format: uri    
+            type: string    
+          minItems: 1    
+          type: array    
+        - format: uri    
+          type: string    
+      type: Property    
+    source:    
+      description: 'A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object.'    
+      type: Property    
+    type:    
+      description: 'NSGI Entity Type. it has to be DLTtxReceipt'    
+      enum:    
+        - DLTtxReceipt    
+      type: Property    
+  required:    
+    - id    
+    - type    
+  type: object    
+</code></pre>
+
+</details>
+
+<pre><code>
+</code></pre>
+<h2 id="example-payloads">Example payloads</h2>
+<h4 id="dlttxreceipt-ngsi-v2-key-values-example">DLTtxReceipt NGSI-v2 key-values Example</h4>
+<p>Here is an example of a DLTtxReceipt in JSON-LD format as key-values. This is compatible with NGSI-v2 when  using <code>options=keyValues</code> and returns the context data of an individual entity.  </p>
+<pre><code class="language-json">
+{  
+  &quot;id&quot;: &quot;urn:ngsi-ld:dataModel:id:VINF:36225393&quot;,  
+  &quot;type&quot;: &quot;DLTtxReceipt&quot;,  
+  &quot;refEntity&quot;: &quot;urn:ngsi-ld:Animal:1&quot;,  
+  &quot;TxReceipts&quot;: {  
+    &quot;to&quot;: &quot;0x9a3dbca554e9f6b9257aaa24010da8377c57c17e&quot;,  
+    &quot;from&quot;: &quot;0x4c962a968ff8cc5c99688602969ada5caa3a92cb&quot;,  
+    &quot;keys&quot;: [  
+      &quot;id&quot;,  
+      &quot;type&quot;,  
+      &quot;species&quot;,  
+      &quot;legalId&quot;,  
+      &quot;birthdate&quot;,  
+      &quot;@context&quot;  
+    ],  
+    &quot;logs&quot;: {  
+      &quot;id&quot;: &quot;log_e04a3da4&quot;,  
+      &quot;data&quot;: &quot;0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000&quot;,  
+      &quot;topics&quot;: [  
+        &quot;0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175&quot;  
+      ],  
+      &quot;logAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+      &quot;removed&quot;: false,  
+      &quot;logIndex&quot;: 0,  
+      &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+      &quot;blockNumber&quot;: 345522,  
+      &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+      &quot;transactionIndex&quot;: 0  
+    },  
+    &quot;status&quot;: false,  
+    &quot;dltType&quot;: &quot;eth&quot;,  
+    &quot;gasUsed&quot;: 112188,  
+    &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+    &quot;logsBloom&quot;: &quot;0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000&quot;,  
+    &quot;objectType&quot;: &quot;asset&quot;,  
+    &quot;blockNumber&quot;: 345522,  
+    &quot;storageType&quot;: &quot;merkletree&quot;,  
+    &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+    &quot;contractAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+    &quot;transactionIndex&quot;: 0,  
+    &quot;cumulativeGasUsed&quot;: 112188  
+  },  
+  &quot;dateCreated&quot;: &quot;2005-10-29T02:48:51Z&quot;,  
+  &quot;dateModified&quot;: &quot;1980-07-30T13:43:48Z&quot;  
+}  
+</code></pre>
+<h4 id="dlttxreceipt-ngsi-v2-normalized-example">DLTtxReceipt NGSI-v2 normalized Example</h4>
+<p>Here is an example of a DLTtxReceipt in JSON-LD format as normalized. This is compatible with NGSI-v2 when not using options and returns the context data of an individual entity.  </p>
+<pre><code class="language-json">
+{  
+  &quot;id&quot;: &quot;VINF.36225393&quot;,  
+  &quot;type&quot;: &quot;DLTtxReceipt&quot;,  
+  &quot;refEntity&quot;: {  
+    &quot;type&quot;: &quot;Relationship&quot;,  
+    &quot;value&quot;: &quot;Animal.1&quot;  
+  },  
+  &quot;TxReceipts&quot;: {  
+    &quot;type&quot;: &quot;Property&quot;,  
+    &quot;value&quot;: {  
+      &quot;to&quot;: &quot;0x9a3dbca554e9f6b9257aaa24010da8377c57c17e&quot;,  
+      &quot;from&quot;: &quot;0x4c962a968ff8cc5c99688602969ada5caa3a92cb&quot;,  
+      &quot;keys&quot;: [  
+        &quot;id&quot;,  
+        &quot;type&quot;,  
+        &quot;species&quot;,  
+        &quot;legalId&quot;,  
+        &quot;birthdate&quot;,  
+        &quot;@context&quot;  
+      ],  
+      &quot;logs&quot;: {  
+        &quot;id&quot;: &quot;log_e04a3da4&quot;,  
+        &quot;data&quot;: &quot;0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000&quot;,  
+        &quot;topics&quot;: [  
+          &quot;0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175&quot;  
+        ],  
+        &quot;logAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+        &quot;removed&quot;: false,  
+        &quot;logIndex&quot;: 0,  
+        &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+        &quot;blockNumber&quot;: 345522,  
+        &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+        &quot;transactionIndex&quot;: 0  
+      },  
+      &quot;status&quot;: false,  
+      &quot;dltType&quot;: &quot;eth&quot;,  
+      &quot;gasUsed&quot;: 112188,  
+      &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+      &quot;logsBloom&quot;: &quot;0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000&quot;,  
+      &quot;objectType&quot;: &quot;asset&quot;,  
+      &quot;blockNumber&quot;: 345522,  
+      &quot;storageType&quot;: &quot;merkletree&quot;,  
+      &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+      &quot;contractAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+      &quot;transactionIndex&quot;: 0,  
+      &quot;cumulativeGasUsed&quot;: 112188  
+    }  
+  },  
+  &quot;dateCreated&quot;: {  
+    &quot;type&quot;: &quot;Property&quot;,  
+    &quot;value&quot;: &quot;1970-03-25T22:57:25Z&quot;  
+  },  
+  &quot;dateModified&quot;: {  
+    &quot;type&quot;: &quot;Property&quot;,  
+    &quot;value&quot;: &quot;2019-03-15T08:10:09Z&quot;  
+  }  
+}  
+</code></pre>
+<h4 id="dlttxreceipt-ngsi-ld-key-values-example">DLTtxReceipt NGSI-LD key-values Example</h4>
+<p>Here is an example of a DLTtxReceipt in JSON-LD format as key-values. This is compatible with NGSI-LD when  using <code>options=keyValues</code> and returns the context data of an individual entity.  </p>
+<pre><code class="language-json">
+{  
+  &quot;id&quot;: &quot;urn:ngsi-ld:dataModel:id:VINF:36225393&quot;,  
+  &quot;type&quot;: &quot;DLTtxReceipt&quot;,  
+  &quot;refEntity&quot;: &quot;urn:ngsi-ld:Animal:1&quot;,  
+  &quot;TxReceipts&quot;: {  
+    &quot;to&quot;: &quot;0x9a3dbca554e9f6b9257aaa24010da8377c57c17e&quot;,  
+    &quot;from&quot;: &quot;0x4c962a968ff8cc5c99688602969ada5caa3a92cb&quot;,  
+    &quot;keys&quot;: [  
+      &quot;id&quot;,  
+      &quot;type&quot;,  
+      &quot;species&quot;,  
+      &quot;legalId&quot;,  
+      &quot;birthdate&quot;,  
+      &quot;@context&quot;  
+    ],  
+    &quot;logs&quot;: {  
+      &quot;id&quot;: &quot;log_e04a3da4&quot;,  
+      &quot;data&quot;: &quot;0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000&quot;,  
+      &quot;topics&quot;: [  
+        &quot;0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175&quot;  
+      ],  
+      &quot;logAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+      &quot;removed&quot;: false,  
+      &quot;logIndex&quot;: 0,  
+      &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+      &quot;blockNumber&quot;: 345522,  
+      &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+      &quot;transactionIndex&quot;: 0  
+    },  
+    &quot;status&quot;: false,  
+    &quot;dltType&quot;: &quot;eth&quot;,  
+    &quot;gasUsed&quot;: 112188,  
+    &quot;blockHash&quot;: &quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+    &quot;logsBloom&quot;: &quot;0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000&quot;,  
+    &quot;objectType&quot;: &quot;asset&quot;,  
+    &quot;blockNumber&quot;: 345522,  
+    &quot;storageType&quot;: &quot;merkletree&quot;,  
+    &quot;transactionHash&quot;: &quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+    &quot;contractAddress&quot;: &quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+    &quot;transactionIndex&quot;: 0,  
+    &quot;cumulativeGasUsed&quot;: 112188  
+  },  
+  &quot;dateCreated&quot;: &quot;2005-10-29T02:48:51Z&quot;,  
+  &quot;dateModified&quot;: &quot;1980-07-30T13:43:48Z&quot;,  
+  &quot;@context&quot;: [  
+    &quot;https://smartdatamodels.org/context.jsonld&quot;  
+  ]  
+}  
+</code></pre>
+<h4 id="dlttxreceipt-ngsi-ld-normalized-example">DLTtxReceipt NGSI-LD normalized Example</h4>
+<p>Here is an example of a DLTtxReceipt in JSON-LD format as normalized. This is compatible with NGSI-LD when not using options and returns the context data of an individual entity.  </p>
+<pre><code class="language-json">
+{  
+    &quot;id&quot;:&quot;urn:ngsi-ld:dataModel:id:VINF:36225393&quot;,  
+    &quot;type&quot;:&quot;DLTtxReceipt&quot;,  
+    &quot;refEntity&quot;:{  
+        &quot;type&quot;:&quot;Relationship&quot;,  
+        &quot;object&quot;:&quot;urn:ngsi-ld:Animal:1&quot;  
+    },  
+    &quot;TxReceipts&quot;:{  
+        &quot;type&quot;:&quot;Property&quot;,  
+        &quot;value&quot;:{  
+            &quot;to&quot;:&quot;0x9a3dbca554e9f6b9257aaa24010da8377c57c17e&quot;,  
+            &quot;from&quot;:&quot;0x4c962a968ff8cc5c99688602969ada5caa3a92cb&quot;,  
+            &quot;keys&quot;:[  
+                &quot;id&quot;,  
+                &quot;type&quot;,  
+                &quot;species&quot;,  
+                &quot;legalId&quot;,  
+                &quot;birthdate&quot;,  
+                &quot;@context&quot;  
+            ],  
+            &quot;logs&quot;:{  
+                &quot;id&quot;:&quot;log_e04a3da4&quot;,  
+                &quot;data&quot;:&quot;0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000&quot;,  
+                &quot;topics&quot;:[  
+                    &quot;0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175&quot;  
+                ],  
+                &quot;logAddress&quot;:&quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+                &quot;removed&quot;:false,  
+                &quot;logIndex&quot;:0,  
+                &quot;blockHash&quot;:&quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+                &quot;blockNumber&quot;:345522,  
+                &quot;transactionHash&quot;:&quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+                &quot;transactionIndex&quot;:0  
+            },  
+            &quot;status&quot;:false,  
+            &quot;dltType&quot;:&quot;eth&quot;,  
+            &quot;gasUsed&quot;:112188,  
+            &quot;blockHash&quot;:&quot;0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56&quot;,  
+            &quot;logsBloom&quot;:&quot;0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000&quot;,  
+            &quot;objectType&quot;:&quot;asset&quot;,  
+            &quot;blockNumber&quot;:345522,  
+            &quot;storageType&quot;:&quot;merkletree&quot;,  
+            &quot;transactionHash&quot;:&quot;0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517&quot;,  
+            &quot;contractAddress&quot;:&quot;0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e&quot;,  
+            &quot;transactionIndex&quot;:0,  
+            &quot;cumulativeGasUsed&quot;:112188  
+        }  
+    },  
+    &quot;dateCreated&quot;:{  
+        &quot;type&quot;:&quot;Property&quot;,  
+        &quot;value&quot;:{  
+            &quot;@type&quot;:&quot;DateTime&quot;,  
+            &quot;@value&quot;:&quot;1970-03-25T22:57:25Z&quot;  
+        }  
+    },  
+    &quot;dateModified&quot;:{  
+        &quot;type&quot;:&quot;Property&quot;,  
+        &quot;value&quot;:{  
+            &quot;@type&quot;:&quot;DateTime&quot;,  
+            &quot;@value&quot;:&quot;2019-03-15T08:10:09Z&quot;  
+        }  
+    },  
+    &quot;@context&quot;:[  
+        &quot;https://smartdatamodels.org/context.jsonld&quot;  
+    ]  
+}  
+</code></pre>
               
             </div>
           </div>
