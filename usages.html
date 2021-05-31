@@ -74,7 +74,21 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="usages.html">Usage</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#creating-an-identity">Creating an Identity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-token-from-the-idm">Getting TOKEN from the IDM</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#creating-an-entity">Creating an entity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-an-entity">Get an Entity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#updating-an-entity">Updating an entity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-blockchain-transaction-recipt">Get Blockchain Transaction Recipt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-data-from-blockchain">Get Data from Blockchain</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verify-data-from-blockchain">Verify Data from Blockchain</a>
     </li>
     </ul>
                     </li>
@@ -139,11 +153,148 @@
             <div class="section">
               
                 <h1 id="platform-usage">Platform Usage</h1>
+<h2 id="creating-an-identity">Creating an Identity</h2>
+<pre><code class="language-sh"></code></pre>
+<h2 id="getting-token-from-the-idm">Getting TOKEN from the IDM</h2>
+<pre><code class="language-sh">curl --location --request POST 'http://localhost:3005/oauth2/token' \
+--header 'Authorization: Basic MzlmZTFlZTAtNGRjOS00YmFjLTlmMDMtZjhkYzkyZjUxMzgyOmVmNzJiNjNjLWM3ZmUtNDRhOS1iZGZhLTIxZDhkZTE4MTYyMw==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Accept: application/json' \
+--header 'Cookie: session=eyJyZWRpciI6Ii8ifQ==; session.sig=HX0gTNYqa01FJdR9Uxe4s1mNPEA' \
+--data-raw 'username=admin@test.com&amp;password=1234&amp;grant_type=password'
+</code></pre>
 <h2 id="creating-an-entity">Creating an entity</h2>
-<p>e.g. Creating data</p>
-<p>e.g. Creation of IOT Device</p>
-<p>e.g. Submitting IoT Data</p>
-<p>e.g. Updating data in Context Broker</p>
+<pre><code class="language-sh">curl --location --request POST 'http://localhost:1027/ngsi-ld/v1/entities/' \
+--header 'X-Auth-Token: f227d2745e35ed04ebceccaa44095420dd25d0e5' \
+--header 'Content-Type: application/ld+json' \
+--header 'DLT-Token: MHg0Qzk2MkE5NjhGRjhDYzVDOTk2ODg2MDI5NjlBZGE1Q0FhM0E5MmNCOjB4ZmExYjFlM2NlZWMzNDEzNjM2YjA1MjdiOTMwNWE3MGVjMDA1NTNkM2U4MDliYWUwMDExYzYwOWY2MTg0MjUzNQ' \
+--header 'Cookie: session=eyJyZWRpciI6Ii8ifQ==; session.sig=HX0gTNYqa01FJdR9Uxe4s1mNPEA' \
+--data-raw '{
+  &quot;id&quot;: &quot;urn:ngsi-ld:Animal:2&quot;,
+  &quot;type&quot;: &quot;Animal&quot;,
+  &quot;modifiedAt&quot;: &quot;2017-05-04T12:30:00Z&quot;,
+  &quot;species&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;sheep&quot;
+  },
+  &quot;relatedSource&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: [
+      {
+        &quot;application&quot;: &quot;urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a&quot;,
+        &quot;applicationEntityId&quot;: &quot;app:sheep1&quot;
+      }
+    ]
+  },
+  &quot;legalId&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;ES142589652140&quot;
+  },
+  &quot;birthdate&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: {
+      &quot;@type&quot;: &quot;DateTime&quot;,
+      &quot;@value&quot;: &quot;2017-01-01T01:20:00Z&quot;
+    }
+  },
+  &quot;sex&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;female&quot;
+  },
+  &quot;breed&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;Merina&quot;
+  },
+  &quot;calvedBy&quot;: {
+    &quot;type&quot;: &quot;Relationship&quot;,
+    &quot;object&quot;: &quot;urn:ngsi-ld:Animal:aa9f1295-425c-8ba3-b745-b653097d5a87&quot;
+  },
+  &quot;siredBy&quot;: {
+    &quot;type&quot;: &quot;Relationship&quot;,
+    &quot;object&quot;: &quot;urn:ngsi-ld:Animal:aa9f1295-425c-8ba3-b745-b653097d5a87&quot;
+  },
+  &quot;location&quot;: {
+    &quot;type&quot;: &quot;GeoProperty&quot;,
+    &quot;value&quot;: {
+      &quot;type&quot;: &quot;Point&quot;,
+      &quot;coordinates&quot;: [
+        -4.754444444,
+        41.640833333
+      ]
+    }
+  },
+  &quot;weight&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: 65.3
+  },
+  &quot;ownedBy&quot;: {
+    &quot;type&quot;: &quot;Relationship&quot;,
+    &quot;object&quot;: &quot;http://person.org/leon&quot;
+  },
+  &quot;locatedAt&quot;: {
+    &quot;type&quot;: &quot;Relationship&quot;,
+    &quot;object&quot;: &quot;urn:ngsi-ld:AgriParcel:1ea0f120-4474-11e8-9919-672036642081&quot;
+  },
+  &quot;phenologicalCondition&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;adult&quot;
+  },
+  &quot;reproductiveCondition&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;inCalf&quot;
+  },
+  &quot;healthCondition&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;healthy&quot;
+  },
+  &quot;fedWith&quot;: {
+    &quot;type&quot;: &quot;Relationship&quot;,
+    &quot;object&quot;: &quot;urn:ngsi-ld:FEED:1ea0f120-4474-11e8-9919-0000000081&quot;
+  },
+  &quot;welfareCondition&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;adequate&quot;
+  },
+  &quot;@context&quot;: [
+    &quot;https://smartdatamodels.org/context.jsonld&quot;,
+    &quot;https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld&quot;
+  ]
+}'
+</code></pre>
+<h2 id="get-an-entity">Get an Entity</h2>
+<pre><code class="language-sh">curl --location --request GET 'http://localhost:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Building:store339' \
+--header 'X-Auth-Token: 7ca19ac956f1612c53bc78669cd79688db9d33d4' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    &quot;id&quot;: &quot;urn:ngsi-ld:Building:store355&quot;,
+    &quot;type&quot;: &quot;AgriProductType&quot;,
+    &quot;category&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: [&quot;commercial&quot;]
+    },
+    &quot;address&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: {
+            &quot;streetAddress&quot;: &quot;Bornholmer Straße 65&quot;,
+            &quot;addressRegion&quot;: &quot;Berlin&quot;,
+            &quot;addressLocality&quot;: &quot;Prenzlauer Berg&quot;,
+            &quot;postalCode&quot;: &quot;10439&quot;
+        },
+        &quot;verified&quot;: {
+            &quot;type&quot;: &quot;Property&quot;,
+            &quot;value&quot;: true
+        }
+    },
+    &quot;@context&quot;: [
+        &quot;https://fiware.github.io/data-models/context.jsonld&quot;,
+        &quot;https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld&quot;
+    ]
+}'
+</code></pre>
+<h2 id="updating-an-entity">Updating an entity</h2>
+<h2 id="get-blockchain-transaction-recipt">Get Blockchain Transaction Recipt</h2>
+<h2 id="get-data-from-blockchain">Get Data from Blockchain</h2>
+<h2 id="verify-data-from-blockchain">Verify Data from Blockchain</h2>
               
             </div>
           </div>
