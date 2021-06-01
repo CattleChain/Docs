@@ -7,11 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Explanation of the recommended reverse chronological release ordering.
 
-
 ## [0.2.1] - 07-2021
-- Alastria Network Deployment
-- Test Account and fuecet service integration
-- FIWARE Component deployment in k8s
+1. Alastria Network Deployment
+2. Test Account and fuecet service integration
+3. FIWARE Component deployment in k8s
 
 ## [0.2] - 04-2021
 - Ethreum Client - (Quorum Test Network)
