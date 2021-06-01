@@ -97,3 +97,5 @@ AEI Smart Contract is written in Solidity using ERC721 standard (NFT) and can be
 Taurus is a blockchain listener that supports various DLT, and the listener aims to listen to Blockchain Events and store data in FIWARE. This component compliments FIWARE as an OffChainDB.
 
 [Link](https://github.com/FIWARE-Blockchain/Taurus).
+
+**Important: Currently Taurus is not integrated in the project but will be soon**
