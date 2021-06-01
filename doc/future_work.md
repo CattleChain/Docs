@@ -8,11 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Explanation of the recommended reverse chronological release ordering.
 
 ## [0.2.1] - 07-2021
+
 1. Alastria Network Deployment
 2. Test Account and fuecet service integration
 3. FIWARE Component deployment in k8s
 
 ## [0.2] - 04-2021
+
 - Ethreum Client - (Quorum Test Network)
 - Canis Major Development and Integration
 - NGSI-LD Usages
@@ -24,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - version 0.1.1 ppt [Link](https://drive.google.com/file/d/1LANR6Dg9R-f7tiU9y6dnhdTJU9HEdcdf/view?usp=sharing)
 
 ## [0.1] - 08-2020
+
 - Hyperledger Sawtooth Test Network
 - Sawtooth Transaction Processor
 - Sawtooth Explorer

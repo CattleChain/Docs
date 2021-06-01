@@ -12,8 +12,8 @@ The first of Alastria’s partner node networks (Red T) is built on Quorum techn
 
 To know more about it follow here:
 
-[Alastria Network](https://github.com/alastria/alastria-node)
-[Quorum Technology](https://docs.goquorum.consensys.net/en/stable/)
+1. [Alastria Network](https://github.com/alastria/alastria-node)
+2. [Quorum Technology](https://docs.goquorum.consensys.net/en/stable/)
 
 
 ## Use of AEI Contract
@@ -23,6 +23,7 @@ CattleChain project using AEI (Asset, Event, Identity) Standard Contract. AEI Sm
 ERC 721 Contract is follow OpenZepplin standards, security audits are trusted by leading organizations building decentralized systems.
 
 ### ERC 721
+
 ERC 721 A standard interface for non-fungible tokens, also known as deeds.
 The following standard allows for the implementation of a standard API for NFTs within smart contracts. This standard provides basic functionality to track and transfer NFTs.
 
@@ -35,8 +36,8 @@ In general, all houses are distinct and no two kittens are alike. NFTs are disti
 
 to know more follow here: 
 
-[ERC 721](https://eips.ethereum.org/EIPS/eip-721)
-[OpenZepplin ERC721](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721)
+1. [ERC 721](https://eips.ethereum.org/EIPS/eip-721)
+2. [OpenZepplin ERC721](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721)
 
 ### AEI Contract Design
 
@@ -49,6 +50,7 @@ AEI contract is cosist of 3 aspects (see the figure below):
 ![AEI Contract Design](https://raw.githubusercontent.com/FIWARE-Blockchain/AEIContract/master/docs/images/1.png)
 
 #### Example
+
 ![Example](https://raw.githubusercontent.com/FIWARE-Blockchain/AEIContract/master/docs/images/2.png)
 
 To Store the NGSI-LD model there are few possibilities with the help of some supported storage type:
@@ -80,7 +82,10 @@ To Store the NGSI-LD model there are few possibilities with the help of some sup
 Apart from that ERC721, Ownable, MerkleProof, ECDSA methods are supported.
 
 ### Dependencies
+
 _This project uses:_
+
+
  - truffle
  - NodeJS
  - Ganache-CLI (testrpc)
