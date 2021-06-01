@@ -1,4 +1,4 @@
-# Future Work (Changelog)
+# Future Work and Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## Future Update
+
 - Alastria Network Deployment
 - Test Account and fuecet service integration
 - FIWARE Component deployment in k8s

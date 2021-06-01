@@ -19,5 +19,4 @@ pages:
     - 'ML/AI Operations': ml_operations.md
     - 'Environment': environment.md
     - 'Evaluation': evaluation.md
-    - 'Changelog': changelog.md
-    - 'Future Work': future_work.md
+    - 'Future Work and Changelog': future_work.md
