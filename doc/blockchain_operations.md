@@ -119,10 +119,43 @@ The way Canis Major work's in 'Powered By FIWARE' architecture as follows:
 
 ![Creation of an entity](https://raw.githubusercontent.com/CattleChain/Docs/master/images/createentity.png)
 
+
+**Creation of an entity goes as follow:**
+1. Actor create an request with a payload to PEP Proxy.
+    *  the request is consist of the payload and in header TOKEN (generate from the keyrock IDM) and the DLT_KEYS (which is a base64 for public and private key of the wallet).
+2. Wilma autherize the request of the user by validating it from the keyrock IDM.
+3. On Success wilma submit the request to the Context Broker and the entity will be store.
+4. On Successfully entity creation wilma notify the CanisMajor Adaptor to persist the entity in blockchain (where the smart contract is already configured).
+    *   Willma notify the CanisMajor with payload, dlt_keys in header and it also support option ctx_map (which allow user to mention what particular keys from the payload should be persist in the smart contract).
+5. Canis Major further validate the DLT_KEY (identity), create a signed transaction and submit it to the blockchain.
+    * Here we are using AEI_Contract and the createAsset method of the contract is called.
+6. On successful transacation creation the tx_reciept of the transaction will be available in canis major, which can be queried any time.
+
 ### Adding Metadata (eventy) on an Entity (Animal, Farm etc)
 
 ![Adding Metadata](https://raw.githubusercontent.com/CattleChain/Docs/master/images/addattr.png)
 
+
+**Adding Metadata on an entity goes as follow:**
+1. Actor create an request with a payload to PEP Proxy.
+    *  the request is consist of the payload and in header TOKEN (generate from the keyrock IDM) and the DLT_KEYS (which is a base64 for public and private key of the wallet).
+2. Wilma autherize the request of the user by validating it from the keyrock IDM.
+3. On Success wilma submit the request to the Context Broker with the meta information and entity_id.
+4. On Successfully entity creation wilma notify the CanisMajor Adaptor to persist the entity in blockchain (where the smart contract is already configured).
+    *   Willma notify the CanisMajor with payload, dlt_keys in header and it also support option ctx_map (which allow user to mention what particular keys from the payload should be persist in the smart contract).
+5. Canis Major further validate the DLT_KEY (identity), create a signed transaction and submit it to the blockchain.
+    * here the request is for adding the metadata, canis major will call AddMetadata method of the AEI Contract.
+6. On successful transacation creation the tx_reciept of the transaction will be available in canis major, which can be queried any time.
+
 ### Qyery
 
 ![Query](https://raw.githubusercontent.com/CattleChain/Docs/master/images/query.png)
+
+
+**Quering the data on blockchain goes as follow:**
+1. Actor send a request to canis major with the Entity_ID.
+2. Canis major check the transaction details from the local storage and fetch the reciept.
+3. Canis Major futher call the AEI contarct, getAsset method and the fetch the stored hash.
+4. Hash will be returned back to the hash.
+
+**Note: the returned Hash could be a IPFS Hash, IOTAMaM hash or MerkleRoot, depend on the configuration of the CanisMajor and data from the has can be fetched or validated from the canismajor query apis (for more checkout the canismajor api specification)"
