@@ -121,6 +121,8 @@ The way Canis Major work's in 'Powered By FIWARE' architecture as follows:
 
 
 **Creation of an entity goes as follow:**
+
+
 1. Actor create an request with a payload to PEP Proxy.
     *  the request is consist of the payload and in header TOKEN (generate from the keyrock IDM) and the DLT_KEYS (which is a base64 for public and private key of the wallet).
 2. Wilma autherize the request of the user by validating it from the keyrock IDM.
@@ -137,6 +139,8 @@ The way Canis Major work's in 'Powered By FIWARE' architecture as follows:
 
 
 **Adding Metadata on an entity goes as follow:**
+
+
 1. Actor create an request with a payload to PEP Proxy.
     *  the request is consist of the payload and in header TOKEN (generate from the keyrock IDM) and the DLT_KEYS (which is a base64 for public and private key of the wallet).
 2. Wilma autherize the request of the user by validating it from the keyrock IDM.
@@ -153,6 +157,8 @@ The way Canis Major work's in 'Powered By FIWARE' architecture as follows:
 
 
 **Quering the data on blockchain goes as follow:**
+
+
 1. Actor send a request to canis major with the Entity_ID.
 2. Canis major check the transaction details from the local storage and fetch the reciept.
 3. Canis Major futher call the AEI contarct, getAsset method and the fetch the stored hash.
