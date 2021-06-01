@@ -8,8 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Explanation of the recommended reverse chronological release ordering.
 
 
-## Future Update
-
+## [0.2.1] - 07-2021
 - Alastria Network Deployment
 - Test Account and fuecet service integration
 - FIWARE Component deployment in k8s
