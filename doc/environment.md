@@ -6,14 +6,14 @@ In future, we will be using Kubernetes.
 
 
 # Test Environment
-
 [Link](https://cattlechain.github.io/)
 
 ## Service Status Page
-
-
 [Link](https://cattlechain.github.io/)
 
 # Production Environment
-
 To be decided on Kubernetes Cluster.
+
+
+# Environment Administration
+This area will help to adminstrator the system and solve the problems in the platform has any.
