@@ -14,6 +14,7 @@ To know more about it follow here:
 
 1. [Alastria Network](https://github.com/alastria/alastria-node)
 2. [Quorum Technology](https://docs.goquorum.consensys.net/en/stable/)
+3. [GANACHE-CLI (TESTRPC)](https://github.com/trufflesuite/ganache-cli) Test Network for the development.
 
 
 ## Use of AEI Contract
@@ -79,7 +80,7 @@ To Store the NGSI-LD model there are few possibilities with the help of some sup
 - removeMetadata(bytes32 uuid, uint index)
 - isValidMetadata(bytes32 uuid, uint index, bytes32[] memory _proof, bytes32 _leaf)
 ```
-Apart from that ERC721, Ownable, MerkleProof, ECDSA methods are supported.
+Apart from that **ERC721, Ownable, MerkleProof, ECDSA** methods are supported.
 
 ### Dependencies
 
