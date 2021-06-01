@@ -1,644 +1,468 @@
 # Data Model
 
-## Smart Agrifood 
+CattleChain Project using set of standard data model developed under the FIWARE Smart Data Model Initiative.
+Smart Data Models. This is a collaborative initiative impulsed by FIWARE Foundation, TMForum and IUDX, and many other people and organizations contributing to the data models.
+These data models are open-licensed allowing free use, free modification, and free sharing of modifications. 
 
-[Agrifood data Model](https://github.com/smart-data-models/dataModel.Agrifood/tree/b9868de5c2ac26e1ae6fbabffd3a82c6cdf7034d)
-
-## DLT Transaction Recipt
-[DLT Transation Recipt Data Model](https://github.com/smart-data-models/dataModel.DistributedLedgerTech)
-
-## List of properties  
+To know more about the Smart Data Model follow [here](https://smartdatamodels.org/), [github](https://github.com/smart-data-models).
 
 
-- `TxReceipts`: Transaction Receipt  
-- `address`: The mailing address  
-- `alternateName`: An alternative name for this item  
-- `areaServed`: The geographic area where a service or offered item is provided  
-- `dataProvider`: A sequence of characters identifying the provider of the harmonised data entity.  
-- `dateCreated`: Entity creation timestamp. This will usually be allocated by the storage platform.  
-- `dateModified`: Timestamp of the last modification of the entity. This will usually be allocated by the storage platform.  
-- `description`: A description of this item  
-- `id`: Unique identifier of the entity  
-- `location`:   
-- `name`: The name of this item.  
-- `owner`: A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)  
-- `refEntity`: Entity persisted in the DLT  
-- `seeAlso`: list of uri pointing to additional resources about the item  
-- `source`: A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object.  
-- `type`: NSGI Entity Type. it has to be DLTtxReceipt  
-  
+## CattleChain DataModels 
 
-Required properties  
+### Animal
 
-## Data Model description of properties  
+It is the main entity of the system. It stores all the status information of the animal as its data and its states. The model is valid for dairy and meat.
 
-Sorted alphabetically (click for details)  
-<details><summary><strong>full yaml details</strong></summary>    
+**Example Payload**
+```json
+{
+  "@context": [
+    "https://smartdatamodels.org/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ],
+  "birthdate": {
+    "@type": "DateTime",
+    "@value": "2017-01-01T01:20:00Z"
+  },
+  "breed": "Merina",
+  "calvedBy": "urn:ngsi-ld:Animal:aa9f1295-425c-8ba3-b745-b653097d5a87",
+  "fedWith": "urn:ngsi-ld:FEED:1ea0f120-4474-11e8-9919-0000000081",
+  "healthCondition": "healthy",
+  "id": "urn:ngsi-ld:Animal:ca3f1295-500c-4aa3-b745-d143097d5c01",
+  "legalId": "ES142589652140",
+  "locatedAt": "urn:ngsi-ld:AgriParcel:1ea0f120-4474-11e8-9919-672036642081",
+  "location": {
+    "coordinates": [
+      -4.754444444,
+      41.640833333
+    ],
+    "type": "Point"
+  },
+  "modifiedAt": "2017-05-04T12:30:00Z",
+  "ownedBy": "http://person.org/leon",
+  "phenologicalCondition": "adult",
+  "relatedSource": [
+    {
+      "application": "urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+      "applicationEntityId": "app:sheep1"
+    }
+  ],
+  "reproductiveCondition": "inCalf",
+  "sex": "female",
+  "siredBy": "urn:ngsi-ld:Animal:aa9f1295-425c-8ba3-b745-b653097d5a87",
+  "species": "sheep",
+  "type": "Animal",
+  "weight": 65.3,
+  "welfareCondition": "adequate"
+}
+```
 
-```yaml  
-DLTtxReceipt:    
-  description: 'Description of a DLT receipt storing some of the attributes (keys) of a transaction.'    
-  properties:    
-    TxReceipts:    
-      description: 'Transaction Receipt'    
-      properties:    
-        blockHash:    
-          description: 'Property. Model:''https://schema.org/Text''. Hash of the block of the transaction'    
-          type: string    
-        blockNumber:    
-          description: 'Property. Model:''https://schema.org/Number''. Block number of the transaction'    
-          minimum: 0    
-          type: integer    
-        contractAddress:    
-          description: 'Property. Model:''https://schema.org/Text''. Contract address created, if the transaction was a contract creation, otherwise null'    
-          type: string    
-        cumulativeGasUsed:    
-          description: 'Property. Model:''https://schema.org/Number''. Total amount of gas used when this transaction was executed in the block'    
-          minimum: 0    
-          type: integer    
-        dltType:    
-          description: 'Property. Model:''https://schema.org/Text''. Enum:''eth, iota''. type of DLT used by the transaction'    
-          enum:    
-            - eth    
-            - iota    
-          type: string    
-        from:    
-          description: 'Property. Model:''https://schema.org/Text''. Account Address of the user/service responsible to submit the transaction (address of the msg.sender)'    
-          type: string    
-        gasUsed:    
-          description: 'Property. Model:''https://schema.org/Number''. The amount of gas used by this specific transaction'    
-          minimum: 0    
-          type: integer    
-        keys:    
-          description: 'Property. Payload keys used in transaction payload'    
-          items:    
-            type: string    
-          type: array    
-        logs:    
-          description: 'Property. A log record can be used to describe an event within a smart contract (Ethereum)'    
-          properties:    
-            blockHash:    
-              description: 'Property. Model:''https://schema.org/Text''. Hash of the block where this log was in'    
-              type: string    
-            blockNumber:    
-              description: 'Property. Model:''https://schema.org/Number''. The block number where this log was in. null when its pending. null when its pending log'    
-              minimum: 0    
-              type: integer    
-            data:    
-              description: 'Property. Model:''https://schema.org/Text''. Contains one or more 32 Bytes non-indexed arguments of the log'    
-              type: string    
-            id:    
-              description: 'Property. Model:''https://schema.org/Text''. Log id'    
-              type: string    
-            logAddress:    
-              description: 'Property. Model:''https://schema.org/Text''. Address from which this log originated'    
-              type: string    
-            logIndex:    
-              description: 'Property. Model:''https://schema.org/Number''.  Integer of the log index position in the block. null when its pending log'    
-              minimum: 0    
-              type: integer    
-            removed:    
-              description: 'Property. Model:''https://schema.org/Boolean''. True when the log was removed, due to a chain reorganization. False if its a valid log'    
-              type: boolean    
-            topics:    
-              description: 'Property. Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)'    
-              items: {}    
-              type: array    
-            transactionHash:    
-              description: 'Property. Model:''https://schema.org/Text''. Hash of the transactions this log was created from. null when its pending log'    
-              type: string    
-            transactionIndex:    
-              description: 'Property. Model:''https://schema.org/Number''.  Integer of the transactions index position log was created from. null when its pending log.'    
-              minimum: 0    
-              type: integer    
-          type: object    
-        logsBloom:    
-          description: 'Property. Model:''https://schema.org/Text''. 256 Bytes-bloom filter for light clients to quickly retrieve related logs'    
-          type: string    
-        objectType:    
-          description: 'Property. Model:''https://schema.org/Text''. Type of object has been persisted'    
-          type: string    
-        status:    
-          description: 'Property. Model:''https://schema.org/Boolean''. True or False — which informs us if the txn was reverted or not — in this case it was true (0x1)'    
-          type: boolean    
-        storageType:    
-          description: 'Property. Model:''https://schema.org/Text''. Enum:''iota, ipfs, merkletree''. Type of storage used to persist payload'    
-          enum:    
-            - iota    
-            - ipfs    
-            - merkletree    
-          type: string    
-        to:    
-          description: 'Property. Model:''https://schema.org/Text''. Account or Contract Address to transaction has been submitted'    
-          type: string    
-        transactionHash:    
-          description: 'Property. Model:''https://schema.org/Text''. Hash of the transaction'    
-          type: string    
-        transactionIndex:    
-          description: 'Property. Model:''https://schema.org/Number''. Integer of the transactions index position in the block'    
-          minimum: 0    
-          type: integer    
-      type: Property    
-    address:    
-      description: 'The mailing address'    
-      properties:    
-        addressCountry:    
-          description: 'Property. The country. For example, Spain. Model:''https://schema.org/addressCountry'''    
-          type: string    
-        addressLocality:    
-          description: 'Property. The locality in which the street address is, and which is in the region. Model:''https://schema.org/addressLocality'''    
-          type: string    
-        addressRegion:    
-          description: 'Property. The region in which the locality is, and which is in the country. Model:''https://schema.org/addressRegion'''    
-          type: string    
-        postOfficeBoxNumber:    
-          description: 'Property. The post office box number for PO box addresses. For example, 03578. Model:''https://schema.org/postOfficeBoxNumber'''    
-          type: string    
-        postalCode:    
-          description: 'Property. The postal code. For example, 24004. Model:''https://schema.org/https://schema.org/postalCode'''    
-          type: string    
-        streetAddress:    
-          description: 'Property. The street address. Model:''https://schema.org/streetAddress'''    
-          type: string    
-      type: Property    
-      x-ngsi:    
-        model: https://schema.org/address    
-    alternateName:    
-      description: 'An alternative name for this item'    
-      type: Property    
-    areaServed:    
-      description: 'The geographic area where a service or offered item is provided'    
-      type: Property    
-      x-ngsi:    
-        model: https://schema.org/Text    
-    dataProvider:    
-      description: 'A sequence of characters identifying the provider of the harmonised data entity.'    
-      type: Property    
-    dateCreated:    
-      description: 'Entity creation timestamp. This will usually be allocated by the storage platform.'    
-      format: date-time    
-      type: Property    
-    dateModified:    
-      description: 'Timestamp of the last modification of the entity. This will usually be allocated by the storage platform.'    
-      format: date-time    
-      type: Property    
-    description:    
-      description: 'A description of this item'    
-      type: Property    
-    id:    
-      anyOf: &dlttxreceipt_-_properties_-_owner_-_items_-_anyof    
-        - description: 'Property. Identifier format of any NGSI entity'    
-          maxLength: 256    
-          minLength: 1    
-          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$    
-          type: string    
-        - description: 'Property. Identifier format of any NGSI entity'    
-          format: uri    
-          type: string    
-      description: 'Unique identifier of the entity'    
-      type: Property    
-    location:    
-      $id: https://geojson.org/schema/Geometry.json    
-      $schema: "http://json-schema.org/draft-07/schema#"    
-      oneOf:    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                type: number    
-              minItems: 2    
-              type: array    
-            type:    
-              enum:    
-                - Point    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON Point'    
-          type: object    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                items:    
-                  type: number    
-                minItems: 2    
-                type: array    
-              minItems: 2    
-              type: array    
-            type:    
-              enum:    
-                - LineString    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON LineString'    
-          type: object    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                items:    
-                  items:    
-                    type: number    
-                  minItems: 2    
-                  type: array    
-                minItems: 4    
-                type: array    
-              type: array    
-            type:    
-              enum:    
-                - Polygon    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON Polygon'    
-          type: object    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                items:    
-                  type: number    
-                minItems: 2    
-                type: array    
-              type: array    
-            type:    
-              enum:    
-                - MultiPoint    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON MultiPoint'    
-          type: object    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                items:    
-                  items:    
-                    type: number    
-                  minItems: 2    
-                  type: array    
-                minItems: 2    
-                type: array    
-              type: array    
-            type:    
-              enum:    
-                - MultiLineString    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON MultiLineString'    
-          type: object    
-        - properties:    
-            bbox:    
-              items:    
-                type: number    
-              minItems: 4    
-              type: array    
-            coordinates:    
-              items:    
-                items:    
-                  items:    
-                    items:    
-                      type: number    
-                    minItems: 2    
-                    type: array    
-                  minItems: 4    
-                  type: array    
-                type: array    
-              type: array    
-            type:    
-              enum:    
-                - MultiPolygon    
-              type: string    
-          required:    
-            - type    
-            - coordinates    
-          title: 'GeoJSON MultiPolygon'    
-          type: object    
-      title: 'GeoJSON Geometry'    
-    name:    
-      description: 'The name of this item.'    
-      type: Property    
-    owner:    
-      description: 'A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)'    
-      items:    
-        anyOf: *dlttxreceipt_-_properties_-_owner_-_items_-_anyof    
-        description: 'Property. Unique identifier of the entity'    
-      type: Property    
-    refEntity:    
-      anyOf:    
-        - description: 'Property. Identifier format of any NGSI entity'    
-          maxLength: 256    
-          minLength: 1    
-          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$    
-          type: string    
-        - description: 'Property. Identifier format of any NGSI entity'    
-          format: uri    
-          type: string    
-      description: 'Entity persisted in the DLT'    
-      type: Relationship    
-      x-ngsi:    
-        model: http://schema.org/URL    
-    seeAlso:    
-      description: 'list of uri pointing to additional resources about the item'    
-      oneOf:    
-        - items:    
-            format: uri    
-            type: string    
-          minItems: 1    
-          type: array    
-        - format: uri    
-          type: string    
-      type: Property    
-    source:    
-      description: 'A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object.'    
-      type: Property    
-    type:    
-      description: 'NSGI Entity Type. it has to be DLTtxReceipt'    
-      enum:    
-        - DLTtxReceipt    
-      type: Property    
-  required:    
-    - id    
-    - type    
-  type: object    
-```  
-</details>    
+**Important Links**
+[Animal Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal)
+[Animal Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/schema.json)
+[Animal Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/doc/spec.md)
 
-## Example payloads    
 
-#### DLTtxReceipt NGSI-v2 key-values Example    
+### Farm
 
-Here is an example of a DLTtxReceipt in JSON-LD format as key-values. This is compatible with NGSI-v2 when  using `options=keyValues` and returns the context data of an individual entity.  
+It is the main entity of the system. It stores all the status information of the animal as its data and its states.
 
-```json  
+**Example Payload**
+```json
+{
+  "@context": [
+    "https://smartdatamodels.org/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ],
+  "address": {
+    "addressCountry": "ES",
+    "addressLocality": "Valdepe\u00f1as",
+    "streetAddress": "Camino de Membrilla 17",
+    "type": "PostalAddress"
+  },
+  "contactPoint": {
+    "email": "wheatfarm@email.com",
+    "telephone": "00349674532",
+    "type": "ContactPoint"
+  },
+  "createdAt": "2017-01-01T01:20:00Z",
+  "description": "A farm producing wheat",
+  "hasAgriParcel": [
+    "urn:ngsi-ld:AgriParcel:26ba4be0-4474-11e8-8ec1-ab9e0ea93835",
+    "urn:ngsi-ld:AgriParcel:2d5b8874-4474-11e8-8d6b-dbe14425b5e4"
+  ],
+  "hasBuilding": [
+    "urn:ngsi-ld:Building:a6ba44e0-4474-11e8-8ed1-ab9e0ea93827",
+    "urn:ngsi-ld:Building:d95b8874-4474-11e8-8d6b-dbe144258354"
+  ],
+  "id": "urn:ngsi-ld:AgriFarm:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+  "landLocation": {
+    "coordinates": [
+      [
+        [
+          100,
+          0
+        ],
+        [
+          101,
+          0
+        ],
+        [
+          101,
+          1
+        ],
+        [
+          100,
+          1
+        ],
+        [
+          100,
+          0
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "location": {
+    "coordinates": [
+      100,
+      0
+    ],
+    "type": "Point"
+  },
+  "modifiedAt": "2017-05-04T12:30:00Z",
+  "name": "Wheat farm",
+  "ownedBy": "urn:ngsi-ld:Person:fce9dcbc-4479-11e8-9de1-cb228de7a15c",
+  "relatedSource": [
+    {
+      "application": "urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+      "applicationEntityId": "app:farm1"
+    }
+  ],
+  "seeAlso": [
+    "https://example.org/concept/farm",
+    "https://datamodel.org/example/farm"
+  ],
+  "type": "AgriFarm"
+}
+```
 
-{  
-  "id": "urn:ngsi-ld:dataModel:id:VINF:36225393",  
-  "type": "DLTtxReceipt",  
-  "refEntity": "urn:ngsi-ld:Animal:1",  
-  "TxReceipts": {  
-    "to": "0x9a3dbca554e9f6b9257aaa24010da8377c57c17e",  
-    "from": "0x4c962a968ff8cc5c99688602969ada5caa3a92cb",  
-    "keys": [  
-      "id",  
-      "type",  
-      "species",  
-      "legalId",  
-      "birthdate",  
-      "@context"  
-    ],  
-    "logs": {  
-      "id": "log_e04a3da4",  
-      "data": "0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000",  
-      "topics": [  
-        "0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175"  
-      ],  
-      "logAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-      "removed": false,  
-      "logIndex": 0,  
-      "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-      "blockNumber": 345522,  
-      "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-      "transactionIndex": 0  
-    },  
-    "status": false,  
-    "dltType": "eth",  
-    "gasUsed": 112188,  
-    "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-    "logsBloom": "0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000",  
-    "objectType": "asset",  
-    "blockNumber": 345522,  
-    "storageType": "merkletree",  
-    "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-    "contractAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-    "transactionIndex": 0,  
-    "cumulativeGasUsed": 112188  
-  },  
-  "dateCreated": "2005-10-29T02:48:51Z",  
-  "dateModified": "1980-07-30T13:43:48Z"  
-}  
-```  
+**Important Links**
+[Farm Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm)
+[Farm Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/schema.json)
+[Farm Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/doc/spec.md)
 
-#### DLTtxReceipt NGSI-v2 normalized Example    
 
-Here is an example of a DLTtxReceipt in JSON-LD format as normalized. This is compatible with NGSI-v2 when not using options and returns the context data of an individual entity.  
+### Parcel
 
-```json  
+It corresponds to the internal divisions of the farm.
 
-{  
-  "id": "VINF.36225393",  
-  "type": "DLTtxReceipt",  
-  "refEntity": {  
-    "type": "Relationship",  
-    "value": "Animal.1"  
-  },  
-  "TxReceipts": {  
-    "type": "Property",  
-    "value": {  
-      "to": "0x9a3dbca554e9f6b9257aaa24010da8377c57c17e",  
-      "from": "0x4c962a968ff8cc5c99688602969ada5caa3a92cb",  
-      "keys": [  
-        "id",  
-        "type",  
-        "species",  
-        "legalId",  
-        "birthdate",  
-        "@context"  
-      ],  
-      "logs": {  
-        "id": "log_e04a3da4",  
-        "data": "0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000",  
-        "topics": [  
-          "0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175"  
-        ],  
-        "logAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-        "removed": false,  
-        "logIndex": 0,  
-        "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-        "blockNumber": 345522,  
-        "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-        "transactionIndex": 0  
-      },  
-      "status": false,  
-      "dltType": "eth",  
-      "gasUsed": 112188,  
-      "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-      "logsBloom": "0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000",  
-      "objectType": "asset",  
-      "blockNumber": 345522,  
-      "storageType": "merkletree",  
-      "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-      "contractAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-      "transactionIndex": 0,  
-      "cumulativeGasUsed": 112188  
-    }  
-  },  
-  "dateCreated": {  
-    "type": "Property",  
-    "value": "1970-03-25T22:57:25Z"  
-  },  
-  "dateModified": {  
-    "type": "Property",  
-    "value": "2019-03-15T08:10:09Z"  
-  }  
-}  
-```  
+**Example Payload**
+```json
+{
+  "@context": [
+    "https://smartdatamodels.org/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ],
+  "area": 200,
+  "belongsTo": "urn:ngsi-ld:AgriFarm:f67adcbc-4479-22bc-9de1-cb228de7a765",
+  "category": "arable",
+  "createdAt": "2017-01-01T01:20:00Z",
+  "cropStatus": "seeded",
+  "description": "Spring wheat",
+  "hasAgriCrop": "urn:ngsi-ld:AgriCrop:36021150-4474-11e8-a721-af07c5fae7c8",
+  "hasAgriParcelChildren": [
+    "urn:ngsi-ld:AgriParcel:26ba4be0-4474-11e8-8ec1-ab9e0ea93835",
+    "urn:ngsi-ld:AgriParcel:2d5b8874-4474-11e8-8d6b-dbe14425b5e4"
+  ],
+  "hasAgriParcelParent": "urn:ngsi-ld:AgriParcel:1ea0f120-4474-11e8-9919-672036642081",
+  "hasAgriSoil": "urn:ngsi-ld:AgriSoil:429d1338-4474-11e8-b90a-d3e34ceb73df",
+  "hasDevice": [
+    "urn:ngsi-ld:Device:4a40aeba-4474-11e8-86bf-03d82e958ce6",
+    "urn:ngsi-ld:Device:63217d24-4474-11e8-9da2-c3dd3c36891b",
+    "urn:ngsi-ld:Device:68e091dc-4474-11e8-a398-df010c53b416",
+    "urn:ngsi-ld:6f44b54e-4474-11e8-8577-d7ff6a8ef551"
+  ],
+  "id": "urn:ngsi-ld:AgriParcel:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+  "lastPlantedAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "location": {
+    "coordinates": [
+      [
+        100,
+        0
+      ],
+      [
+        101,
+        0
+      ],
+      [
+        101,
+        1
+      ],
+      [
+        100,
+        1
+      ],
+      [
+        100,
+        0
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "modifiedAt": "2017-05-04T12:30:00Z",
+  "ownedBy": "urn:ngsi-ld:Person:fce9dcbc-4479-11e8-9de1-cb228de7a15c",
+  "relatedSource": [
+    {
+      "application": "urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+      "applicationEntityId": "app:parcel1"
+    }
+  ],
+  "seeAlso": [
+    "https://example.org/concept/agriparcel",
+    "https://datamodel.org/example/agriparcel"
+  ],
+  "type": "AgriParcel"
+}
+```
 
-#### DLTtxReceipt NGSI-LD key-values Example    
+**Important Links**
+[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcel)
+[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/schema.json)
+[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/doc/spec.md)
 
-Here is an example of a DLTtxReceipt in JSON-LD format as key-values. This is compatible with NGSI-LD when  using `options=keyValues` and returns the context data of an individual entity.  
 
-```json  
 
-{  
-  "id": "urn:ngsi-ld:dataModel:id:VINF:36225393",  
-  "type": "DLTtxReceipt",  
-  "refEntity": "urn:ngsi-ld:Animal:1",  
-  "TxReceipts": {  
-    "to": "0x9a3dbca554e9f6b9257aaa24010da8377c57c17e",  
-    "from": "0x4c962a968ff8cc5c99688602969ada5caa3a92cb",  
-    "keys": [  
-      "id",  
-      "type",  
-      "species",  
-      "legalId",  
-      "birthdate",  
-      "@context"  
-    ],  
-    "logs": {  
-      "id": "log_e04a3da4",  
-      "data": "0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000",  
-      "topics": [  
-        "0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175"  
-      ],  
-      "logAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-      "removed": false,  
-      "logIndex": 0,  
-      "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-      "blockNumber": 345522,  
-      "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-      "transactionIndex": 0  
-    },  
-    "status": false,  
-    "dltType": "eth",  
-    "gasUsed": 112188,  
-    "blockHash": "0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-    "logsBloom": "0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000",  
-    "objectType": "asset",  
-    "blockNumber": 345522,  
-    "storageType": "merkletree",  
-    "transactionHash": "0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-    "contractAddress": "0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-    "transactionIndex": 0,  
-    "cumulativeGasUsed": 112188  
-  },  
-  "dateCreated": "2005-10-29T02:48:51Z",  
-  "dateModified": "1980-07-30T13:43:48Z",  
-  "@context": [  
-    "https://smartdatamodels.org/context.jsonld"  
-  ]  
-}  
-```  
+### Parcel Operation
 
-#### DLTtxReceipt NGSI-LD normalized Example    
+It corresponds Parcel Operation.
 
-Here is an example of a DLTtxReceipt in JSON-LD format as normalized. This is compatible with NGSI-LD when not using options and returns the context data of an individual entity.  
+**Example Payload**
+```json
+{
+  "@context": [
+    "https://smartdatamodels.org/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ],
+  "createdAt": "2017-01-01T01:20:00Z",
+  "description": "Monthly fertiliser application",
+  "endedAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "hasAgriParcel": "urn:ngsi-ld:AgriParcel:318366a9-7643-4d8e-9a11-c76a8c29d8eb",
+  "hasAgriProductType": "urn:ngsi-ld:AgriProductType:a8f616b8-13fb-473a-8e61-b7a80c6c93ec",
+  "hasOperator": "urn:ngsi-ld:Person:fce9dcbc-4479-11e8-9de1-cb228de7a15c",
+  "id": "urn:ngsi-ld:AgriParcelOperation:e1e9d3a3-074f-46f1-9375-52000d05a62b",
+  "irrigationRecord": "https://example.com/agriparcelrecords/irrigationrecord1",
+  "modifiedAt": "2017-05-04T12:30:00Z",
+  "operationType": "fertiliser",
+  "plannedEndAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "plannedStartAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "quantity": 40,
+  "relatedSource": [
+    {
+      "application": "urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+      "applicationEntityId": "app:parcelop1"
+    }
+  ],
+  "reportedAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "result": "ok",
+  "seeAlso": [
+    "https://example.org/concept/agriparcelop",
+    "https://datamodel.org/example/agriparcelop"
+  ],
+  "startedAt": {
+    "@type": "DateTime",
+    "@value": "2016-08-22T10:18:16Z"
+  },
+  "status": "finished",
+  "type": "AgriParcelOperation",
+  "waterSource": "rainwater capture",
+  "workOrder": "https://example.com/agriparcelrecords/workorder1",
+  "workRecord": "https://example.com/agriparcelrecords/workrecord1"
+}
+```
 
-```json  
+**Important Links**
+[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelOperation)
+[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/schema.json)
+[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/doc/spec.md)
 
-{  
-    "id":"urn:ngsi-ld:dataModel:id:VINF:36225393",  
-    "type":"DLTtxReceipt",  
-    "refEntity":{  
-        "type":"Relationship",  
-        "object":"urn:ngsi-ld:Animal:1"  
-    },  
-    "TxReceipts":{  
-        "type":"Property",  
-        "value":{  
-            "to":"0x9a3dbca554e9f6b9257aaa24010da8377c57c17e",  
-            "from":"0x4c962a968ff8cc5c99688602969ada5caa3a92cb",  
-            "keys":[  
-                "id",  
-                "type",  
-                "species",  
-                "legalId",  
-                "birthdate",  
-                "@context"  
-            ],  
-            "logs":{  
-                "id":"log_e04a3da4",  
-                "data":"0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000",  
-                "topics":[  
-                    "0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175"  
-                ],  
-                "logAddress":"0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-                "removed":false,  
-                "logIndex":0,  
-                "blockHash":"0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-                "blockNumber":345522,  
-                "transactionHash":"0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-                "transactionIndex":0  
-            },  
-            "status":false,  
-            "dltType":"eth",  
-            "gasUsed":112188,  
-            "blockHash":"0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",  
-            "logsBloom":"0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000",  
-            "objectType":"asset",  
-            "blockNumber":345522,  
-            "storageType":"merkletree",  
-            "transactionHash":"0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",  
-            "contractAddress":"0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",  
-            "transactionIndex":0,  
-            "cumulativeGasUsed":112188  
-        }  
-    },  
-    "dateCreated":{  
-        "type":"Property",  
-        "value":{  
-            "@type":"DateTime",  
-            "@value":"1970-03-25T22:57:25Z"  
-        }  
-    },  
-    "dateModified":{  
-        "type":"Property",  
-        "value":{  
-            "@type":"DateTime",  
-            "@value":"2019-03-15T08:10:09Z"  
-        }  
-    },  
-    "@context":[  
-        "https://smartdatamodels.org/context.jsonld"  
-    ]  
-}  
-```  
+
+### Parcel Records
+
+It corresponds Parcel Operation records.
+
+**Example Payload**
+```json
+{
+  "@context": [
+    "https://smartdatamodels.org/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ],
+  "airTemperature": 20,
+  "atmosphericPressure": 1013.25,
+  "createdAt": "2017-01-01T01:20:00Z",
+  "description": "Monthly fertiliser application",
+  "hasAgriParcel": "urn:ngsi-ld:AgriParcel:d3676010-d815-468c-9e01-25739c5a25ed",
+  "hasDevice": [
+    "urn:ngsi-ld:Device:4a40aeba-4474-11e8-86bf-03d82e958ce6",
+    "urn:ngsi-ld:Device:63217d24-4474-11e8-9da2-c3dd3c36891b",
+    "urn:ngsi-ld:Device:68e091dc-4474-11e8-a398-df010c53b416",
+    "urn:ngsi-ld:6f44b54e-4474-11e8-8577-d7ff6a8ef551"
+  ],
+  "id": "urn:ngsi-ld:AgriParcelRecord:8f5445e6-f49b-496e-833b-e65fc97fcab7",
+  "leafRelativeHumidity": 0.25,
+  "leafTemperature": 25.1,
+  "leafWetness": 1.0,
+  "location": {
+    "coordinates": [
+      [
+        100,
+        0
+      ],
+      [
+        101,
+        0
+      ],
+      [
+        101,
+        1
+      ],
+      [
+        100,
+        1
+      ],
+      [
+        100,
+        0
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "modifiedAt": "2017-05-04T12:30:00Z",
+  "observedAt": {
+    "@type": "DateTime",
+    "@value": "2017-05-04T12:30:00Z"
+  },
+  "relatedSource": [
+    {
+      "application": "urn:ngsi-ld:AgriApp:72d9fb43-53f8-4ec8-a33c-fa931360259a",
+      "applicationEntityId": "app:parcelrec1"
+    }
+  ],
+  "relativeHumidity": 0.15,
+  "seeAlso": [
+    "https://example.org/concept/agriparcelrec",
+    "https://datamodel.org/example/agriparcelrec"
+  ],
+  "soilMoistureEc": 17,
+  "soilMoistureVwc": 0.08,
+  "soilSalinity": 1198.11,
+  "soilTemperature": 27,
+  "solarRadiation": 15,
+  "type": "AgriParcelRecord"
+}
+```
+
+**Important Links**
+[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelRecord)
+[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/schema.json)
+[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/doc/spec.md)
+
+
+
+### Blockchain Transaction Receipt
+
+Blockchain trasaction receipt for the any of transaction happend in the blockchain.
+In this project we are using Alastria Network, which is a ethereum client.
+Currently transaction receipts are store in key-values but in future this payload will be used.
+
+**Example Payload**
+```json
+{
+    "id":"urn:ngsi-ld:dataModel:id:VINF:36225393",
+    "type":"DLTtxReceipt",
+    "refEntity":{
+        "type":"Relationship",
+        "object":"urn:ngsi-ld:Animal:1"
+    },
+    "TxReceipts":{
+        "type":"Property",
+        "value":{
+            "to":"0x9a3dbca554e9f6b9257aaa24010da8377c57c17e",
+            "from":"0x4c962a968ff8cc5c99688602969ada5caa3a92cb",
+            "keys":[
+                "id",
+                "type",
+                "species",
+                "legalId",
+                "birthdate",
+                "@context"
+            ],
+            "logs":{
+                "id":"log_e04a3da4",
+                "data":"0x0000000000000000000000004c962a968ff8cc5c99688602969ada5caa3a92cb75726e3a6e6773692d6c643a416e696d616c3a310000000000000000000000000000000000000000000000000000000000000000000000000000000060802b30000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a6470754171367250624133745a6b694441396d425355337a3872355a37544739716970754a4c45413570384145714c58000000000000000000000000000000",
+                "topics":[
+                    "0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175"
+                ],
+                "logAddress":"0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",
+                "removed":false,
+                "logIndex":0,
+                "blockHash":"0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",
+                "blockNumber":345522,
+                "transactionHash":"0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",
+                "transactionIndex":0
+            },
+            "status":false,
+            "dltType":"eth",
+            "gasUsed":112188,
+            "blockHash":"0xce0a88fa83d6b928f65f5eca653e98e81ed67702be1d4253c43b1ccb30d51f56",
+            "logsBloom":"0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000002000000000000000000000000000000000000000000000000000000000",
+            "objectType":"asset",
+            "blockNumber":345522,
+            "storageType":"merkletree",
+            "transactionHash":"0x935dc16fa0b2000e609d6cc366c4fe2cb9557ec47ee94455e135af4259105517",
+            "contractAddress":"0x9a3DBCa554e9f6b9257aAa24010DA8377C57c17e",
+            "transactionIndex":0,
+            "cumulativeGasUsed":112188
+        }
+    },
+    "dateCreated":{
+        "type":"Property",
+        "value":{
+            "@type":"DateTime",
+            "@value":"1970-03-25T22:57:25Z"
+        }
+    },
+    "dateModified":{
+        "type":"Property",
+        "value":{
+            "@type":"DateTime",
+            "@value":"2019-03-15T08:10:09Z"
+        }
+    },
+    "@context":[
+        "https://smartdatamodels.org/context.jsonld"
+    ]
+}
+```
+
+**Important Links**
+[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/tree/master/DLTtxReceipt)
+[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/schema.json)
+[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/doc/spec.md)
+
