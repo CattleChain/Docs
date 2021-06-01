@@ -74,21 +74,23 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="usages.html">Usage</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#creating-an-identity">Creating an Identity</a>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-an-identity-in-keyrock">Creating an Identity in KeyRock</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#getting-token-from-the-idm">Getting TOKEN from the IDM</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#creating-an-entity">Creating an entity</a>
+    <li class="toctree-l2"><a class="reference internal" href="#blockchain-accounts">Blockchain Accounts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-an-entity-pep_proxy">Creating an entity (PEP_PROXY)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#get-an-entity">Get an Entity</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#updating-an-entity">Updating an entity</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#get-blockchain-transaction-recipt">Get Blockchain Transaction Recipt</a>
+    <li class="toctree-l2"><a class="reference internal" href="#get-blockchain-transaction-recipt-from-canis-major">Get Blockchain Transaction Recipt (from canis major)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#get-data-from-blockchain">Get Data from Blockchain</a>
+    <li class="toctree-l2"><a class="reference internal" href="#get-data-from-blockchain-canis-major">Get Data from Blockchain (Canis Major)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#verify-data-from-blockchain">Verify Data from Blockchain</a>
+    <li class="toctree-l2"><a class="reference internal" href="#verify-data-from-blockchain-verifying-from-ipfs-iotamam-and-merkletree-also-works-here">Verify Data from Blockchain (verifying from IPFS (IOTAMaM and MerkleTree also works here))</a>
     </li>
     </ul>
                     </li>
@@ -149,9 +151,13 @@
             <div class="section">
               
                 <h1 id="platform-usage">Platform Usage</h1>
-<h2 id="creating-an-identity">Creating an Identity</h2>
-<pre><code class="language-sh"></code></pre>
+<p>(For the Postman Collection and Envoirment variables please contact <a href="mailto:harpreet.singh@fiware.org">us</a>)</p>
+<p>Here a example set of options given, for more please follow the documentation of used components and generic enablers.</p>
+<h2 id="creating-an-identity-in-keyrock">Creating an Identity in KeyRock</h2>
+<p>you can create user, application and oauth from the keyrock panel.</p>
+<p><img alt="keyrock" src="https://raw.githubusercontent.com/CattleChain/Docs/master/images/keyrock.png" /></p>
 <h2 id="getting-token-from-the-idm">Getting TOKEN from the IDM</h2>
+<p><strong>Request</strong></p>
 <pre><code class="language-sh">curl --location --request POST 'http://localhost:3005/oauth2/token' \
 --header 'Authorization: Basic MzlmZTFlZTAtNGRjOS00YmFjLTlmMDMtZjhkYzkyZjUxMzgyOmVmNzJiNjNjLWM3ZmUtNDRhOS1iZGZhLTIxZDhkZTE4MTYyMw==' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -159,7 +165,23 @@
 --header 'Cookie: session=eyJyZWRpciI6Ii8ifQ==; session.sig=HX0gTNYqa01FJdR9Uxe4s1mNPEA' \
 --data-raw 'username=admin@test.com&amp;password=1234&amp;grant_type=password'
 </code></pre>
-<h2 id="creating-an-entity">Creating an entity</h2>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+    &quot;access_token&quot;: &quot;861ccaaf2ffd6c4a2050549706db63c88f46eded&quot;,
+    &quot;token_type&quot;: &quot;bearer&quot;,
+    &quot;expires_in&quot;: 3599,
+    &quot;refresh_token&quot;: &quot;2cb4167b30ed10a8995f6906c6b414f36f6e3553&quot;,
+    &quot;scope&quot;: [
+        &quot;bearer&quot;
+    ]
+}
+</code></pre>
+<p><strong>*User generated access_token for the 'X-Auth-Token'</strong></p>
+<h2 id="blockchain-accounts">Blockchain Accounts</h2>
+<p>For the development set of Blockchain Account (public/private keys) are generated using ganache-cli.</p>
+<p><strong>User the base64(public_key:private_key) as 'DLT-Token' in header for the request</strong></p>
+<p><strong>If the DLT-Token is missing or incorrect then request will not be consider by canis major adaptor</strong></p>
+<h2 id="creating-an-entity-pep_proxy">Creating an entity (PEP_PROXY)</h2>
 <pre><code class="language-sh">curl --location --request POST 'http://localhost:1027/ngsi-ld/v1/entities/' \
 --header 'X-Auth-Token: f227d2745e35ed04ebceccaa44095420dd25d0e5' \
 --header 'Content-Type: application/ld+json' \
@@ -288,9 +310,171 @@
 }'
 </code></pre>
 <h2 id="updating-an-entity">Updating an entity</h2>
-<h2 id="get-blockchain-transaction-recipt">Get Blockchain Transaction Recipt</h2>
-<h2 id="get-data-from-blockchain">Get Data from Blockchain</h2>
-<h2 id="verify-data-from-blockchain">Verify Data from Blockchain</h2>
+<pre><code class="language-sh">curl --location --request PATCH 'http://localhost:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Animal:20/attrs' \
+--header 'X-Auth-Token: 861ccaaf2ffd6c4a2050549706db63c88f46eded' \
+--header 'Content-Type: application/ld+json' \
+--header 'DLT-Token: MHg0Qzk2MkE5NjhGRjhDYzVDOTk2ODg2MDI5NjlBZGE1Q0FhM0E5MmNCOjB4ZmExYjFlM2NlZWMzNDEzNjM2YjA1MjdiOTMwNWE3MGVjMDA1NTNkM2U4MDliYWUwMDExYzYwOWY2MTg0MjUzNQ' \
+--header 'Cookie: session=eyJyZWRpciI6Ii8ifQ==; session.sig=HX0gTNYqa01FJdR9Uxe4s1mNPEA' \
+--data-raw '{ 
+    &quot;@context&quot;: [
+        &quot;https://schema.lab.fiware.org/ld/context&quot;,
+        &quot;http://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld&quot;
+    ],
+    &quot;species&quot;: {
+    &quot;type&quot;: &quot;Property&quot;,
+    &quot;value&quot;: &quot;cow&quot;
+  }
+}'
+</code></pre>
+<h2 id="get-blockchain-transaction-recipt-from-canis-major">Get Blockchain Transaction Recipt (from canis major)</h2>
+<p><strong>Request</strong></p>
+<pre><code class="language-sh">curl --location --request GET 'http://localhost:4000/entity?entityId=urn:ngsi-ld:Animal:21'
+</code></pre>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+    &quot;offset&quot;: 0,
+    &quot;limit&quot;: 25,
+    &quot;count&quot;: 2,
+    &quot;records&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;entityId&quot;: &quot;urn:ngsi-ld:Animal:21&quot;,
+            &quot;txDetails&quot;: {
+                &quot;to&quot;: &quot;0xcd125237903865f39caf6443209c89ba70a4a385&quot;,
+                &quot;from&quot;: &quot;0x3423f4d100f8646aaf6829ce32cf801996f7007b&quot;,
+                &quot;keys&quot;: [
+                    &quot;id&quot;,
+                    &quot;type&quot;,
+                    &quot;modifiedAt&quot;,
+                    &quot;species&quot;,
+                    &quot;relatedSource&quot;,
+                    &quot;legalId&quot;,
+                    &quot;birthdate&quot;,
+                    &quot;sex&quot;,
+                    &quot;breed&quot;,
+                    &quot;calvedBy&quot;,
+                    &quot;siredBy&quot;,
+                    &quot;location&quot;,
+                    &quot;weight&quot;,
+                    &quot;ownedBy&quot;,
+                    &quot;locatedAt&quot;,
+                    &quot;phenologicalCondition&quot;,
+                    &quot;reproductiveCondition&quot;,
+                    &quot;healthCondition&quot;,
+                    &quot;fedWith&quot;,
+                    &quot;welfareCondition&quot;,
+                    &quot;@context&quot;
+                ],
+                &quot;logs&quot;: [
+                    {
+                        &quot;id&quot;: &quot;log_7b54619e&quot;,
+                        &quot;data&quot;: &quot;0x0000000000000000000000003423f4d100f8646aaf6829ce32cf801996f7007b75726e3a6e6773692d6c643a416e696d616c3a323100000000000000000000000000000000000000000000000000000000000000000000000000000060b654c7000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a647075416b5a684d436e3531437473414e67536e58614e6e476e65764570736e7743756f696a7a466a716a3257335251000000000000000000000000000000&quot;,
+                        &quot;type&quot;: &quot;mined&quot;,
+                        &quot;topics&quot;: [
+                            &quot;0x117ef0a3887baaa508b007da020a6dc877e9f3e78883d885d11e272070e45175&quot;
+                        ],
+                        &quot;address&quot;: &quot;0xcd125237903865f39caf6443209c89bA70a4A385&quot;,
+                        &quot;removed&quot;: false,
+                        &quot;logIndex&quot;: 0,
+                        &quot;blockHash&quot;: &quot;0x3038007f150f19e239ed325d6035ad0798393f072d94e58c228bb4d1585b28a4&quot;,
+                        &quot;blockNumber&quot;: 6,
+                        &quot;transactionHash&quot;: &quot;0xe3af2a382682f5a2ed4a6b15fde00eaeeccd94e838814dc4a567dcd15807602b&quot;,
+                        &quot;transactionIndex&quot;: 0
+                    }
+                ],
+                &quot;status&quot;: true,
+                &quot;dltType&quot;: &quot;eth&quot;,
+                &quot;gasUsed&quot;: 110100,
+                &quot;version&quot;: &quot;ngsi-ld&quot;,
+                &quot;blockHash&quot;: &quot;0x3038007f150f19e239ed325d6035ad0798393f072d94e58c228bb4d1585b28a4&quot;,
+                &quot;logsBloom&quot;: &quot;0x00000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000&quot;,
+                &quot;objectType&quot;: &quot;asset&quot;,
+                &quot;txSignMode&quot;: false,
+                &quot;blockNumber&quot;: 6,
+                &quot;storageType&quot;: &quot;ipfs&quot;,
+                &quot;encyptionMode&quot;: false,
+                &quot;contractAddress&quot;: &quot;0xcd125237903865f39caf6443209c89bA70a4A385&quot;,
+                &quot;transactionHash&quot;: &quot;0xe3af2a382682f5a2ed4a6b15fde00eaeeccd94e838814dc4a567dcd15807602b&quot;,
+                &quot;transactionIndex&quot;: 0,
+                &quot;cumulativeGasUsed&quot;: 110100
+            },
+            &quot;createdAt&quot;: &quot;2021-06-01T15:39:51.000Z&quot;,
+            &quot;updatedAt&quot;: &quot;2021-06-01T15:39:51.000Z&quot;
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;entityId&quot;: &quot;urn:ngsi-ld:Animal:21&quot;,
+            &quot;txDetails&quot;: {
+                &quot;to&quot;: &quot;0xcd125237903865f39caf6443209c89ba70a4a385&quot;,
+                &quot;from&quot;: &quot;0x3423f4d100f8646aaf6829ce32cf801996f7007b&quot;,
+                &quot;keys&quot;: [
+                    &quot;@context&quot;,
+                    &quot;species&quot;
+                ],
+                &quot;logs&quot;: [
+                    {
+                        &quot;id&quot;: &quot;log_9aec53ac&quot;,
+                        &quot;data&quot;: &quot;0x0000000000000000000000003423f4d100f8646aaf6829ce32cf801996f7007b75726e3a6e6773692d6c643a416e696d616c3a323100000000000000000000000000000000000000000000000000000000000000000000000000000060b654f2000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000317a64707542335a53506777735352313232717a39504378534d786e4e5778774e717064794e456e5673366b314d62314231000000000000000000000000000000&quot;,
+                        &quot;type&quot;: &quot;mined&quot;,
+                        &quot;topics&quot;: [
+                            &quot;0x829d21df03bcaa7394716da182142e158a58f007643bf885a86c3b6c0b8047eb&quot;
+                        ],
+                        &quot;address&quot;: &quot;0xcd125237903865f39caf6443209c89bA70a4A385&quot;,
+                        &quot;removed&quot;: false,
+                        &quot;logIndex&quot;: 0,
+                        &quot;blockHash&quot;: &quot;0xd69e695c40951547d3d4469fa5d7f7efb0493cca6f255968b1c105d2040f0111&quot;,
+                        &quot;blockNumber&quot;: 7,
+                        &quot;transactionHash&quot;: &quot;0x6098e7bfab2911e99812b7997044943a61ea5d81906b6745608131ec75b8c380&quot;,
+                        &quot;transactionIndex&quot;: 0
+                    }
+                ],
+                &quot;status&quot;: true,
+                &quot;dltType&quot;: &quot;eth&quot;,
+                &quot;gasUsed&quot;: 109301,
+                &quot;version&quot;: &quot;ngsi-ld&quot;,
+                &quot;blockHash&quot;: &quot;0xd69e695c40951547d3d4469fa5d7f7efb0493cca6f255968b1c105d2040f0111&quot;,
+                &quot;logsBloom&quot;: &quot;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000200000000000000000000000000000000000000000040000000000000000000000000000000000000000010000000000000000000&quot;,
+                &quot;objectType&quot;: &quot;metadata&quot;,
+                &quot;txSignMode&quot;: false,
+                &quot;blockNumber&quot;: 7,
+                &quot;storageType&quot;: &quot;ipfs&quot;,
+                &quot;encyptionMode&quot;: false,
+                &quot;contractAddress&quot;: &quot;0xcd125237903865f39caf6443209c89bA70a4A385&quot;,
+                &quot;transactionHash&quot;: &quot;0x6098e7bfab2911e99812b7997044943a61ea5d81906b6745608131ec75b8c380&quot;,
+                &quot;transactionIndex&quot;: 0,
+                &quot;cumulativeGasUsed&quot;: 109301
+            },
+            &quot;createdAt&quot;: &quot;2021-06-01T15:40:35.000Z&quot;,
+            &quot;updatedAt&quot;: &quot;2021-06-01T15:40:35.000Z&quot;
+        }
+    ]
+}
+</code></pre>
+<h2 id="get-data-from-blockchain-canis-major">Get Data from Blockchain (Canis Major)</h2>
+<p><strong>Request</strong></p>
+<pre><code class="language-sh">curl --location --request GET 'http://localhost:4000/entity/5/dlt'
+</code></pre>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">[
+    &quot;zdpuB3ZSPgwsSR122qz9PCxSMxnNWxwNqpdyNEnVs6k1Mb1B1&quot;
+]
+</code></pre>
+<h2 id="verify-data-from-blockchain-verifying-from-ipfs-iotamam-and-merkletree-also-works-here">Verify Data from Blockchain (verifying from IPFS (IOTAMaM and MerkleTree also works here))</h2>
+<p><strong>Request</strong></p>
+<pre><code class="language-sh">curl --location --request GET 'http://localhost:4000/ipfs/zdpuB3ZSPgwsSR122qz9PCxSMxnNWxwNqpdyNEnVs6k1Mb1B1'
+</code></pre>
+<p><strong>Response</strong></p>
+<pre><code class="language-sh">{
+    &quot;species&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: &quot;cow&quot;
+    },
+    &quot;@context&quot;: [
+        &quot;https://schema.lab.fiware.org/ld/context&quot;,
+        &quot;http://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld&quot;
+    ]
+}
+</code></pre>
               
             </div>
           </div>
