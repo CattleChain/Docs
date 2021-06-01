@@ -4,7 +4,10 @@ CattleChain Project using set of standard data model developed under the FIWARE 
 Smart Data Models. This is a collaborative initiative impulsed by FIWARE Foundation, TMForum and IUDX, and many other people and organizations contributing to the data models.
 These data models are open-licensed allowing free use, free modification, and free sharing of modifications. 
 
-To know more about the Smart Data Model follow [here](https://smartdatamodels.org/), [github](https://github.com/smart-data-models).
+**To know more about the Smart Data Model follow**
+
+  1.  [here](https://smartdatamodels.org/)
+  2.  [github](https://github.com/smart-data-models).
 
 
 ## CattleChain DataModels 
@@ -58,9 +61,10 @@ It is the main entity of the system. It stores all the status information of the
 ```
 
 **Important Links**
-[Animal Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal)
-[Animal Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/schema.json)
-[Animal Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/doc/spec.md)
+
+  1. [Animal Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal)
+  2. [Animal Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/schema.json)
+  3. [Animal Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/Animal/doc/spec.md)
 
 
 ### Farm
@@ -148,9 +152,10 @@ It is the main entity of the system. It stores all the status information of the
 ```
 
 **Important Links**
-[Farm Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm)
-[Farm Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/schema.json)
-[Farm Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/doc/spec.md)
+
+  1. [Farm Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm)
+  2. [Farm Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/schema.json)
+  3. [Farm Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriFarm/doc/spec.md)
 
 
 ### Parcel
@@ -230,9 +235,10 @@ It corresponds to the internal divisions of the farm.
 ```
 
 **Important Links**
-[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcel)
-[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/schema.json)
-[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/doc/spec.md)
+
+  1. [Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcel)
+  2. [Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/schema.json)
+  3. [Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcel/doc/spec.md)
 
 
 
@@ -297,9 +303,10 @@ It corresponds Parcel Operation.
 ```
 
 **Important Links**
-[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelOperation)
-[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/schema.json)
-[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/doc/spec.md)
+
+  1. [Parcel Operation Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelOperation)
+  2. [Parcel Operation Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/schema.json)
+  3. [Parcel Operation Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelOperation/doc/spec.md)
 
 
 ### Parcel Records
@@ -379,9 +386,10 @@ It corresponds Parcel Operation records.
 ```
 
 **Important Links**
-[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelRecord)
-[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/schema.json)
-[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/doc/spec.md)
+
+  1. [Parcel Record Data Model Github](https://github.com/smart-data-models/dataModel.Agrifood/tree/master/AgriParcelRecord)
+  2. [Parcel Record Data Model Schema](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/schema.json)
+  3. [Parcel Record Data Model Description](https://github.com/smart-data-models/dataModel.Agrifood/blob/master/AgriParcelRecord/doc/spec.md)
 
 
 
@@ -462,7 +470,8 @@ Currently transaction receipts are store in key-values but in future this payloa
 ```
 
 **Important Links**
-[Parcel Data Model Github](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/tree/master/DLTtxReceipt)
-[Parcel Data Model Schema](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/schema.json)
-[Parcel Data Model Description](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/doc/spec.md)
+
+  1. [DLTTxReciept Data Model Github](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/tree/master/DLTtxReceipt)
+  2. [DLTTxReciept Data Model Schema](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/schema.json)
+  3. [DLTTxReciept Data Model Description](https://github.com/smart-data-models/dataModel.DistributedLedgerTech/blob/master/DLTtxReceipt/doc/spec.md)
 
