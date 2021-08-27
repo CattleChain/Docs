@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Explanation of the recommended reverse chronological release ordering.
 
-## [0.2.1] - 07-2021
+## [0.2.1] - Next
 
 1. Alastria Network Deployment
 2. Test Account and fuecet service integration
